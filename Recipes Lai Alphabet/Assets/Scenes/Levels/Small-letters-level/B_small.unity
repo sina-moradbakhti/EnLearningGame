@@ -4937,7 +4937,7 @@ MonoBehaviour:
     ContinueButton: {fileID: 1354789616}
     Brush: {fileID: 634988611}
     ClearPanel: {fileID: 1243286565}
-    WinPanel: {fileID: 1879509632}
+    WinPanel: {fileID: 0}
     ExitButton: {fileID: 2040652075}
     RetryButton: {fileID: 2054591529}
     MicrophonePanel: {fileID: 1205592096}
