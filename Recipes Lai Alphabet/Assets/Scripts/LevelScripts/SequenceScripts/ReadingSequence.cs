@@ -27,7 +27,7 @@ public class ReadingSequence : MonoBehaviour
     void Start()
     {
         source = this.GetComponent<AudioSource>();
-        CheckForMicrophine();
+        //CheckForMicrophine();
     }
 
     public void StartSequence()
@@ -70,11 +70,11 @@ public class ReadingSequence : MonoBehaviour
 
     private void StartRecording()
     {
-        if (micConnected && !Microphone.IsRecording(null))
+        /*if (micConnected && !Microphone.IsRecording(null))
         {
             clip = Microphone.Start(null, true, 20, maxFreq);
             source.clip = clip;
-        }
+        }*/
 
         Invoke("StopRecording", 3f);
     }
@@ -83,13 +83,13 @@ public class ReadingSequence : MonoBehaviour
     {
         MusicManager.musicManager.ChangeMusicVolume(0.4f, 0.25f);
 
-        if (micConnected && Microphone.IsRecording(null))
-        {
+        //if (micConnected && Microphone.IsRecording(null))
+        //{
             animations.Animators.MicAnimator.SetBool("Recording", false);
             Microphone.End(null);
             StartCoroutine(AISpellingCheck(clip));
             //source.Play();
-        }
+        //}
     }
 
     IEnumerator AISpellingCheck(AudioClip clip)

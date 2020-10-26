@@ -75,7 +75,9 @@ public class WritingSequence : MonoBehaviour
 
     IEnumerator ActivateDrawingBrush()
     {
-        foreach(GameObject part in manager.LetterParts)
+        MusicManager.musicManager.ChangeMusicVolume(0.4f, 0.25f);
+
+        foreach (GameObject part in manager.LetterParts)
         {
             part.SetActive(true);
         }
