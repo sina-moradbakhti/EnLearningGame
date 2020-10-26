@@ -13,6 +13,7 @@ public struct UIElements{
     public Button ContinueButton;
     public Image Brush;
     public RectTransform ClearPanel;
+    public RectTransform WinPanel;
     public Button ExitButton;
     public Button RetryButton;
     public RectTransform MicrophonePanel;

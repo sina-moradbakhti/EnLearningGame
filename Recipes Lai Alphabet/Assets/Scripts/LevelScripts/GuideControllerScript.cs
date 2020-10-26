@@ -34,7 +34,12 @@ public class GuideControllerScript : MonoBehaviour
         firstSpeed = typeSpeed;
         charIndex = 0;
         manager.UIElements.CharacterSpeechCloud.gameObject.SetActive(true);
-        animations.Animators.SpeakerCloudAnimation.Play("Appear");
+        animations.Animators.SpeakerCloudAnimation.SetBool("showGuide", true);
+        Invoke("activeTypeGuide", 0.5f);
+    }
+
+    private void activeTypeGuide()
+    {
         typeGuide = true;
         animations.Animators.LaiAnimator.SetBool("explain", true);
         animations.Animators.BekiAnimator.SetBool("explain", true);
@@ -72,8 +77,8 @@ public class GuideControllerScript : MonoBehaviour
     {
         animations.Animators.LaiAnimator.SetBool("explain", false);
         animations.Animators.BekiAnimator.SetBool("explain", false);
+        animations.Animators.SpeakerCloudAnimation.SetBool("showGuide", false);
         manager.UIElements.CharacterSpeechText.text = "";
-        manager.UIElements.CharacterSpeechCloud.gameObject.SetActive(false);
         if (MoveOnEnumerator == null) return;
         else
             StartCoroutine(MoveOnEnumerator);

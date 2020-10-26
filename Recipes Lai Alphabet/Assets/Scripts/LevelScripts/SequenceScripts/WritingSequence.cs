@@ -19,6 +19,14 @@ public class WritingSequence : MonoBehaviour
     private bool PlayerCanDraw = false;
     private bool clear = false;
 
+    GameObject PartToClear;
+    GameObject StarToTake;
+    DrawGuid currentGuid;
+    GameObject startPart;
+    GameObject endPart;
+    int guideToActivate = 0;
+    int partToClearIndex;
+
     private void Start()
     {
         SetInitialReferences();
@@ -53,9 +61,16 @@ public class WritingSequence : MonoBehaviour
     {
         string message = "If 3,2,1 is\nWith a magic brush\nDraw it";
 
+
+        GuideController.StartGuid(message, 0.1f, CountDown(), true);
+    }
+
+    IEnumerator CountDown()
+    {
+        yield return new WaitForSeconds(0.1f);
         ListeningSequence listening = this.GetComponent<ListeningSequence>();
         listening.countDownStartNumber = 3;
-        GuideController.StartGuid(message, 0.1f, listening.CountDown(ActivateDrawingBrush()), true);
+        listening.CountDownFunction(ActivateDrawingBrush(), true);
     }
 
     IEnumerator ActivateDrawingBrush()
@@ -74,15 +89,6 @@ public class WritingSequence : MonoBehaviour
         PlayerBrush.SetActive(true);
         PlayerCanDraw = true;
     }
-
-    GameObject PartToClear;
-    GameObject StarToTake;
-    DrawGuid currentGuid;
-    GameObject startPart;
-    GameObject endPart;
-    int guideToActivate = 0;
-    int partToClearIndex;
-    int starToTakeIndex;
 
     private void ActivateGuide(int guideIndex)
     {
@@ -176,7 +182,7 @@ public class WritingSequence : MonoBehaviour
 
     private void ShowWinPanel()
     {
-        manager.UIElements.ClearPanel.gameObject.SetActive(true);
+        manager.UIElements.WinPanel.gameObject.SetActive(true);
         manager.UIElements.ExitButton.gameObject.SetActive(true);
         manager.UIElements.RetryButton.gameObject.SetActive(true);
 
@@ -186,8 +192,31 @@ public class WritingSequence : MonoBehaviour
         this.GetComponent<AudioSource>().clip = manager.ClearSound;
         this.GetComponent<AudioSource>().loop = false;
         this.GetComponent<AudioSource>().Play();
-
+        UpdatePrefs();
         clear = false;
+    }
+
+    private void UpdatePrefs()
+    {
+        string levelLetter = LetterToDraw.ToString();
+
+        if(levelLetter == levelLetter.ToUpper())
+        {
+            
+        }else if (levelLetter == levelLetter.ToLower())
+        {
+            int currentLevelIndex = PlayerPrefs.GetInt("CurrentLevelIndex");
+            int levelBuildIndex = SceneManager.GetActiveScene().buildIndex;
+
+            int newLevelIndex = currentLevelIndex + 1;
+
+            if(levelBuildIndex == newLevelIndex)
+            {
+                PlayerPrefs.SetInt("CurrentLevelIndex",newLevelIndex);
+            }
+
+        }
+
     }
 
     private void SetInitialReferences()

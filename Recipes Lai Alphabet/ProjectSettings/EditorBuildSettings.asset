@@ -12,12 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/A_small.unity
+    guid: 7fe570e67c9193645bd64034ba54f806
+  - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/B_small.unity
+    guid: 3051f1d294a80dd419aec1eddbf42355
+  - enabled: 1
     path: Assets/Scenes/Levels/Capital-letters-levels/A_Capital.unity
     guid: 806173b39911843489dcc40cff3e9888
   - enabled: 1
     path: Assets/Scenes/Levels/Capital-letters-levels/B_Capital.unity
-    guid: 37f079183e73e1c4e813639455ff10ab
-  - enabled: 1
-    path: Assets/Scenes/Levels/Small-letters-level/A_small.unity
-    guid: 7fe570e67c9193645bd64034ba54f806
+    guid: 9219c48eea4302143a3ec0ddc372c91a
   m_configObjects: {}
