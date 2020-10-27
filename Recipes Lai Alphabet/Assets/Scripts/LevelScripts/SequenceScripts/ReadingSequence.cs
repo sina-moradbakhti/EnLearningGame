@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using UnityEngine;
 using UnityEngine.Android;
 
@@ -9,13 +10,13 @@ public class ReadingSequence : MonoBehaviour
     GameManager manager;
     GuideControllerScript GuideControllerScript;
     AnimationsController animations;
+    ListeningSequence listening;
 
 
     private bool micConnected = false;
-
+    private bool takeMicrophone = false;
     private int minFreq;
     private int maxFreq;
-
     private AudioSource source;
     private AudioClip clip;
 
@@ -53,18 +54,18 @@ public class ReadingSequence : MonoBehaviour
     IEnumerator CountDown()
     {
         yield return new WaitForSeconds(0.5f);
-        ListeningSequence listening = this.GetComponent<ListeningSequence>();
         listening.countDownStartNumber = 3;
+        takeMicrophone = true;
         listening.CountDownFunction(ListenToPlayer(), true);
     }
 
     IEnumerator ListenToPlayer()
     {
-        manager.UIElements.MicrophonePanel.gameObject.SetActive(true);
-        animations.Animators.MicAnimator.SetBool("Start", true);
+        //manager.UIElements.MicrophonePanel.gameObject.SetActive(true);
+        //animations.Animators.MicAnimator.SetBool("Start", true);
         yield return new WaitForSeconds(0.5f);
-        animations.Animators.MicAnimator.SetBool("Recording", true);
-        animations.Animators.MicAnimator.SetBool("Start", false);
+        //animations.Animators.MicAnimator.SetBool("Recording", true);
+        //animations.Animators.MicAnimator.SetBool("Start", false);
         StartRecording();
     }
 
@@ -81,11 +82,12 @@ public class ReadingSequence : MonoBehaviour
 
     public void StopRecording()
     {
+        animations.Animators.LaiAnimator.SetBool("speak", false);
         MusicManager.musicManager.ChangeMusicVolume(0.4f, 0.25f);
 
         //if (micConnected && Microphone.IsRecording(null))
         //{
-            animations.Animators.MicAnimator.SetBool("Recording", false);
+            //animations.Animators.MicAnimator.SetBool("Recording", false);
             Microphone.End(null);
             StartCoroutine(AISpellingCheck(clip));
             //source.Play();
@@ -136,6 +138,14 @@ public class ReadingSequence : MonoBehaviour
             }
         }
 
+        if (takeMicrophone)
+        {
+            if (listening.countDownStartNumber == 0)
+            {
+                animations.Animators.LaiAnimator.SetBool("speak", true);
+                takeMicrophone = false;
+            }
+        }
     }
 
     public void ShowResult(float result)
@@ -213,5 +223,6 @@ public class ReadingSequence : MonoBehaviour
         manager = this.GetComponent<GameManager>();
         GuideControllerScript = this.GetComponent<GuideControllerScript>();
         animations = this.GetComponent<AnimationsController>();
+        listening = this.GetComponent<ListeningSequence>();
     }
 }
