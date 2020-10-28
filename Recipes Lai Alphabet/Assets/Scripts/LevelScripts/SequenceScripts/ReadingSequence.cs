@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using UnityEngine;
-using UnityEngine.Android;
+//using UnityEngine.Android;
 
 public class ReadingSequence : MonoBehaviour
 {
@@ -12,13 +12,16 @@ public class ReadingSequence : MonoBehaviour
     AnimationsController animations;
     ListeningSequence listening;
 
-
     private bool micConnected = false;
     private bool takeMicrophone = false;
     private int minFreq;
     private int maxFreq;
     private AudioSource source;
     private AudioClip clip;
+
+    bool showResult = false;
+    bool clearResult = false;
+    float result;
 
     private void Awake()
     {
@@ -31,89 +34,12 @@ public class ReadingSequence : MonoBehaviour
         //CheckForMicrophine();
     }
 
-    public void StartSequence()
-    {
-        string message = "friends!​\nMagic spell\nDid you listen well?";
-        GuideControllerScript.StartGuid(message,0.1f, FirstGuide(), true);
-    }
-
-    IEnumerator FirstGuide()
-    {
-        yield return new WaitForSeconds(1f);
-        string message = "Magic alphabet\nTo find\nYou have to shout a spell";
-        GuideControllerScript.StartGuid(message, 0.1f, ReadyToCountDown(), true);
-    }
-
-    IEnumerator ReadyToCountDown()
-    {
-        yield return new WaitForSeconds(1f);
-        string message = "If you do 3,2,1\nOf magic spells\nShout out!​";
-        GuideControllerScript.StartGuid(message, 0.1f, CountDown(), true);
-    }
-
-    IEnumerator CountDown()
-    {
-        yield return new WaitForSeconds(0.5f);
-        listening.countDownStartNumber = 3;
-        takeMicrophone = true;
-        listening.CountDownFunction(ListenToPlayer(), true);
-    }
-
-    IEnumerator ListenToPlayer()
-    {
-        //manager.UIElements.MicrophonePanel.gameObject.SetActive(true);
-        //animations.Animators.MicAnimator.SetBool("Start", true);
-        yield return new WaitForSeconds(0.5f);
-        //animations.Animators.MicAnimator.SetBool("Recording", true);
-        //animations.Animators.MicAnimator.SetBool("Start", false);
-        StartRecording();
-    }
-
-    private void StartRecording()
-    {
-        /*if (micConnected && !Microphone.IsRecording(null))
-        {
-            clip = Microphone.Start(null, true, 20, maxFreq);
-            source.clip = clip;
-        }*/
-
-        Invoke("StopRecording", 3f);
-    }
-
-    public void StopRecording()
-    {
-        animations.Animators.LaiAnimator.SetBool("speak", false);
-        MusicManager.musicManager.ChangeMusicVolume(0.4f, 0.25f);
-
-        //if (micConnected && Microphone.IsRecording(null))
-        //{
-            //animations.Animators.MicAnimator.SetBool("Recording", false);
-            Microphone.End(null);
-            StartCoroutine(AISpellingCheck(clip));
-            //source.Play();
-        //}
-    }
-
-    IEnumerator AISpellingCheck(AudioClip clip)
-    {
-        float testResult;
-        //Do the API job
-        testResult = 0.8f/*UnityEngine.Random.Range(0.1f, 1)*/;
-        yield return new WaitForSeconds(1f);
-
-        ShowResult(testResult);
-    }
-
-    bool showResult = false;
-    bool clearResult = false;
-    float result;
-
     private void Update()
     {
         if (showResult)
         {
             float fillAmount = manager.UIElements.ResultImage.fillAmount;
-            if(fillAmount < result)
+            if (fillAmount < result)
             {
                 manager.UIElements.ResultImage.fillAmount += 0.5f * Time.deltaTime;
             }
@@ -146,6 +72,78 @@ public class ReadingSequence : MonoBehaviour
                 takeMicrophone = false;
             }
         }
+    }
+    public void StartSequence()
+    {
+        string message = "친구들!​\n마법의 주문을\n잘 들었나요?";
+        GuideControllerScript.StartGuid(message,0.1f, FirstGuide(), true);
+    }
+
+    IEnumerator FirstGuide()
+    {
+        yield return new WaitForSeconds(1f);
+        string message = "마법의 알파벳을\n찾기 위해서는\n주문을 외쳐야 해요";
+        GuideControllerScript.StartGuid(message, 0.1f, ReadyToCountDown(), true);
+    }
+
+    IEnumerator ReadyToCountDown()
+    {
+        yield return new WaitForSeconds(1f);
+        string message = "3,2,1 하면\n마법의 주문의\n외쳐봐요!​";
+        GuideControllerScript.StartGuid(message, 0.1f, CountDown(), true);
+    }
+
+    IEnumerator CountDown()
+    {
+        yield return new WaitForSeconds(0.5f);
+        listening.countDownStartNumber = 3;
+        takeMicrophone = true;
+        listening.CountDownFunction(ListenToPlayer(), true);
+    }
+
+    IEnumerator ListenToPlayer()
+    {
+        //manager.UIElements.MicrophonePanel.gameObject.SetActive(true);
+        //animations.Animators.MicAnimator.SetBool("Start", true);
+        yield return new WaitForSeconds(0.5f);
+        //animations.Animators.MicAnimator.SetBool("Recording", true);
+        //animations.Animators.MicAnimator.SetBool("Start", false);
+        StartRecording();
+    }
+
+    private void StartRecording()
+    {
+        /*if (micConnected && !Microphone.IsRecording(null))
+        {
+            clip = Microphone.Start(null, true, 20, maxFreq);
+            source.clip = clip;
+        }*/
+
+        Invoke("StopRecording", 1.8f);
+    }
+
+    public void StopRecording()
+    {
+        animations.Animators.LaiAnimator.SetBool("speak", false);
+        MusicManager.musicManager.ChangeMusicVolume(0.4f, 0.25f);
+
+        //if (micConnected && Microphone.IsRecording(null))
+        //{
+            //animations.Animators.MicAnimator.SetBool("Recording", false);
+            Microphone.End(null);
+            StartCoroutine(AISpellingCheck(clip));
+            //source.Play();
+        //}
+    }
+
+    IEnumerator AISpellingCheck(AudioClip clip)
+    {
+        float testResult;
+        //Do the API job
+        testResult = 0.8f/*UnityEngine.Random.Range(0.1f, 1)*/;
+        yield return new WaitForSeconds(1f);
+
+        ShowResult(testResult);
     }
 
     public void ShowResult(float result)
@@ -187,7 +185,7 @@ public class ReadingSequence : MonoBehaviour
     private void SpellingFailed()
     {
         manager.UIElements.MicrophonePanel.gameObject.SetActive(false);
-        string message = "Don't be disappointed\nLet's start again!​\nGo with Rai~";
+        string message = "실망하지 마세요\n다시 시작해 봐요!\n라이와 함께 GO~";
         GuideControllerScript.StartGuid(message, 0.1f, ListenAgain(), true);
     }
 

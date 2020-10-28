@@ -18,9 +18,27 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Small-letters-level/B_small.unity
     guid: 3051f1d294a80dd419aec1eddbf42355
   - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/C_small.unity
+    guid: c072e94ce9f2b5142a0280a5b9065786
+  - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/D_small.unity
+    guid: 6530a792a02055347b354ac3cae28777
+  - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/E_small.unity
+    guid: 216373c625efe9b4393a6a645bcdcb74
+  - enabled: 1
     path: Assets/Scenes/Levels/Capital-letters-levels/A_Capital.unity
     guid: 806173b39911843489dcc40cff3e9888
   - enabled: 1
     path: Assets/Scenes/Levels/Capital-letters-levels/B_Capital.unity
     guid: 9219c48eea4302143a3ec0ddc372c91a
+  - enabled: 1
+    path: Assets/Scenes/Levels/Capital-letters-levels/C_Capital.unity
+    guid: b33e45c551fb2a144ac1d75341b76257
+  - enabled: 1
+    path: Assets/Scenes/Levels/Capital-letters-levels/D_Capital.unity
+    guid: 397be07df09bf4e43b1d2ef6d9857e99
+  - enabled: 1
+    path: Assets/Scenes/Levels/Capital-letters-levels/E_Capital.unity
+    guid: 6b8a708c230b7ba4588b4e68e330c638
   m_configObjects: {}

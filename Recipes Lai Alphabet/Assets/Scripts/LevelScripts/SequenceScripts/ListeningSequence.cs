@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using UnityEngine;
 
 public class ListeningSequence : MonoBehaviour
@@ -18,18 +19,35 @@ public class ListeningSequence : MonoBehaviour
     public Sprite SpeakerOnSprite;
     public Sprite SpeakerOffSprite;
 
-    private string sequenceGuideStrings = "If I do 3,2,1\nthe magic spell is\nI hear you!";
     public int countDownStartNumber { get; set; }
+
+    private string sequenceGuideStrings = "1,2,3 하면\n마법의 주문이\n들려요!";
+    private bool takeSpeaker = false;
     private int repeatCount;
+
 
     private void Awake()
     {
         SetInitialReferences();
     }
 
-    public void StartSequence(){
+    private void Update()
+    {
+        if (takeSpeaker)
+        {
+            if(countDownStartNumber == 0)
+            {
+                animations.Animators.LaiAnimator.SetBool("listen", true);
+                takeSpeaker = false;
+            }
+        }
+    }
+
+    public void StartSequence()
+    {
         GuideController.StartGuid(sequenceGuideStrings , 0.1f,SpellTheLetter(),true);
     }
+
 
     IEnumerator SpellTheLetter()
     {
@@ -38,6 +56,7 @@ public class ListeningSequence : MonoBehaviour
         MusicManager.musicManager.ChangeMusicVolume(0f, 0.25f);
         audioSource.clip = CountdownAudio;
         audioSource.Play();
+        takeSpeaker = true;
         StartCoroutine(CountDown(PronounceAlphabet()));
     }
 
@@ -85,12 +104,11 @@ public class ListeningSequence : MonoBehaviour
 
     IEnumerator PronounceAlphabet()
     {
-        animations.Animators.LaiAnimator.SetBool("listen", true);
-        if (manager.UIElements.SpeakerButton.gameObject.activeInHierarchy == false)
+        /*if (manager.UIElements.SpeakerButton.gameObject.activeInHierarchy == false)
         {
             ActivateSpeaker();
             manager.UIElements.SpeakerButton.image.sprite = SpeakerOnSprite;
-        }
+        }*/
 
         animations.Animators.SpeakerAnimator.SetTrigger("OpenSpeaker");
         audioSource.clip = PronunciationAudio;
@@ -111,22 +129,17 @@ public class ListeningSequence : MonoBehaviour
     private void StopSequence()
     {
         animations.Animators.LaiAnimator.SetBool("listen", false);
-        DeactivateSpeaker();
+        //DeactivateSpeaker();
         GuideController.Reset();
         MusicManager.musicManager.ChangeMusicVolume(0.4f, 0.25f);
-        string newGuideString = "Press Speaker to pronounce again or press continue to move on!";
-        GuideController.StartGuid(newGuideString, 0.1f, SpeakerReadyToGo(), true);
-
-        manager.UIElements.SpeakerButton.onClick.AddListener(RepeatPronounciation);
-        manager.UIElements.ContinueButton.onClick.AddListener(MoveOnSecondSequence);
+        Invoke("MoveOnSecondSequence", 1f);
     }
 
-    private IEnumerator SpeakerReadyToGo()
+    private void MoveOnSecondSequence()
     {
-        yield return new WaitForSeconds(0.1f);
-        ActivateSpeaker();
-        manager.UIElements.SpeakerButton.image.sprite = SpeakerOffSprite;
-        manager.UIElements.ContinueButton.gameObject.SetActive(true);
+        GuideController.Reset();
+        ReadingSequence secondSeq = this.GetComponent<ReadingSequence>();
+        secondSeq.StartSequence();
     }
 
     private void ActivateSpeaker()
@@ -137,26 +150,6 @@ public class ListeningSequence : MonoBehaviour
     private void DeactivateSpeaker()
     {
         animations.Animators.SpeakerCloudAnimation.Play("SpeakerDeactivateAnim");
-    }
-
-    private void RepeatPronounciation()
-    {
-        manager.UIElements.ContinueButton.gameObject.SetActive(false);
-        DeactivateSpeaker();
-        manager.UIElements.ContinueButton.onClick.RemoveListener(MoveOnSecondSequence);
-        manager.UIElements.SpeakerButton.onClick.RemoveListener(RepeatPronounciation);
-
-        GuideController.Reset();
-        StartCoroutine(SpellTheLetter());
-    }
-
-    private void MoveOnSecondSequence()
-    {
-        DeactivateSpeaker();
-        manager.UIElements.ContinueButton.gameObject.SetActive(false);
-        GuideController.Reset();
-        ReadingSequence secondSeq = this.GetComponent<ReadingSequence>();
-        secondSeq.StartSequence();
     }
 
     private void SetInitialReferences()

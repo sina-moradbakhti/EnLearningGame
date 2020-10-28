@@ -7,12 +7,12 @@ public class PlayerBrush : MonoBehaviour
 
     public bool BrushSelected = false;
 
-    private Vector3 firstLocation;
+    private WritingSequence writingSequence;
     private bool moveWithMouse = false;
 
     private void Start()
     {
-        firstLocation = this.transform.position;
+        writingSequence = GameObject.FindObjectOfType<WritingSequence>();
     }
 
 
@@ -49,6 +49,6 @@ public class PlayerBrush : MonoBehaviour
 
     public void ReturnToFirstPos()
     {
-        this.transform.position = firstLocation;
+        this.transform.position = writingSequence.currentGuid.GuideStars[0].transform.position;
     }
 }

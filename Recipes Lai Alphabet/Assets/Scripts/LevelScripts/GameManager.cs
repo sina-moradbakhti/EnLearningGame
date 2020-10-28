@@ -10,12 +10,9 @@ public struct UIElements{
     public Image CharacterSpeechCloud;
     public TMP_Text CharacterSpeechText;
     public Button SpeakerButton;
-    public Button ContinueButton;
     public Image Brush;
     public RectTransform ClearPanel;
     public RectTransform WinPanel;
-    public Button ExitButton;
-    public Button RetryButton;
     public RectTransform MicrophonePanel;
     public Image ResultImage;
 }
@@ -33,7 +30,7 @@ public class GameManager : MonoBehaviour
     public GameSetting gameSetting;
     public GameObject[] LetterParts;
     public AudioClip ClearSound;
-    private string BeginningGuideString = "Hello friends!​\nMagic Chef Laiya needs Help from you!";
+    private string BeginningGuideString = "안녕 친구들!​\n마법 요리사 라이야\n친구들의 도움이\n필요해";
 
     private GuideControllerScript GuideController;
 

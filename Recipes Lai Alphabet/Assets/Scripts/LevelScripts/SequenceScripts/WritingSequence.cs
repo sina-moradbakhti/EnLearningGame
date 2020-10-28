@@ -20,8 +20,7 @@ public class WritingSequence : MonoBehaviour
     private bool clear = false;
 
     GameObject PartToClear;
-    GameObject StarToTake;
-    DrawGuid currentGuid;
+    public DrawGuid currentGuid { set; get; }
     GameObject startPart;
     GameObject endPart;
     int guideToActivate = 0;
@@ -32,9 +31,17 @@ public class WritingSequence : MonoBehaviour
         SetInitialReferences();
     }
 
+    private void Update()
+    {
+        if (clear)
+        {
+            ShowWinPanel();
+        }
+    }
+
     public void StartSequence()
     {
-        string message = "Magic brush\nCall it!";
+        string message = "마법의 붓을\n불려봐요!";
         GuideController.StartGuid(message,0.1f, ShowBrush(), true);
     }
 
@@ -47,7 +54,7 @@ public class WritingSequence : MonoBehaviour
 
     public void DrawOrderMessage()
     {
-        string message = "Magic brush\nDraw a picture\nTake a good look";
+        string message = "마법의 붓이\n그리는 그림을\n잘 보세요";
         GuideController.StartGuid(message, 0.1f, DrawTheLetter(), true);
     }
 
@@ -59,7 +66,7 @@ public class WritingSequence : MonoBehaviour
 
     public void PlayerDrawTime()
     {
-        string message = "If 3,2,1 is\nWith a magic brush\nDraw it";
+        string message = "3,2,1하면\n마법의 붓으로\n그려봐요";
 
 
         GuideController.StartGuid(message, 0.1f, CountDown(), true);
@@ -89,6 +96,7 @@ public class WritingSequence : MonoBehaviour
         ActivateGuide(guideToActivate);
 
         PlayerBrush.SetActive(true);
+        PlayerBrush.transform.position = PartToClear.transform.position;
         PlayerCanDraw = true;
     }
 
@@ -104,6 +112,8 @@ public class WritingSequence : MonoBehaviour
                 drawGuid.GuideObject.SetActive(false);
             }
         }
+
+        currentGuid.GuideStars[1].GetComponent<Image>().sprite = starCompleteSprite;
 
         startPart = currentGuid.GuideParts[0];
         endPart = currentGuid.GuideParts[currentGuid.GuideParts.Length - 1];
@@ -124,7 +134,9 @@ public class WritingSequence : MonoBehaviour
                     if (PartToClear == startPart)
                     {
                         GameObject star = currentGuid.GuideStars[0];
-                        star.GetComponent<Image>().sprite = starCompleteSprite;
+                        star.GetComponent<Animator>().Play("Star_Disappear");
+                        //star.GetComponent<Image>().sprite = starCompleteSprite;
+                        //star.SetActive(false);
                         star.AddComponent<AudioSource>();
                         star.GetComponent<AudioSource>().loop = false;
                         star.GetComponent<AudioSource>().clip = dingSound;
@@ -141,7 +153,8 @@ public class WritingSequence : MonoBehaviour
                 else
                 {
                     GameObject star = currentGuid.GuideStars[1];
-                    star.GetComponent<Image>().sprite = starCompleteSprite;
+                    star.GetComponent<Animator>().Play("Star_Disappear");
+                    //star.GetComponent<Image>().sprite = starCompleteSprite;
                     star.AddComponent<AudioSource>();
                     star.GetComponent<AudioSource>().loop = false;
                     star.GetComponent<AudioSource>().clip = dingSound;
@@ -174,19 +187,11 @@ public class WritingSequence : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (clear)
-        {
-            ShowWinPanel();
-        }
-    }
-
     private void ShowWinPanel()
     {
         manager.UIElements.WinPanel.gameObject.SetActive(true);
-        manager.UIElements.ExitButton.gameObject.SetActive(true);
-        manager.UIElements.RetryButton.gameObject.SetActive(true);
+        //manager.UIElements.ExitButton.gameObject.SetActive(true);
+        //manager.UIElements.RetryButton.gameObject.SetActive(true);
 
         animations.Animators.LaiAnimator.SetBool("cheer", true);
         animations.Animators.BekiAnimator.SetBool("cheer", true);
@@ -204,7 +209,7 @@ public class WritingSequence : MonoBehaviour
 
         if(levelLetter == levelLetter.ToUpper())
         {
-            
+            Invoke("MoveToSmallLetter", 2f);
         }else if (levelLetter == levelLetter.ToLower())
         {
             int currentLevelIndex = PlayerPrefs.GetInt("CurrentLevelIndex");
@@ -217,8 +222,20 @@ public class WritingSequence : MonoBehaviour
                 PlayerPrefs.SetInt("CurrentLevelIndex",newLevelIndex);
             }
 
+            Invoke("MoveToMainMenu", 2f);
         }
+    }
+    
+    private void MoveToSmallLetter()
+    {
+        ScenesManager scenesManager = GameObject.FindObjectOfType<ScenesManager>();
+        scenesManager.GoToSmallLetterLevel();
+    }
 
+    private void MoveToMainMenu()
+    {
+        ScenesManager scenesManager = GameObject.FindObjectOfType<ScenesManager>();
+        scenesManager.LoadLevelByName("MainMenu");
     }
 
     private void SetInitialReferences()
