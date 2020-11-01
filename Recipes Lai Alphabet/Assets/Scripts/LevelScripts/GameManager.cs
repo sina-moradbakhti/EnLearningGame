@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Diagnostics.Eventing.Reader;
 
 [System.Serializable]
 public struct UIElements{
@@ -20,7 +21,8 @@ public struct UIElements{
 [System.Serializable]
 public struct GameSetting
 {
-    public float startDelay;
+    public bool CanSkip;
+    public float startDelay { get; set; }
     public AudioClip levelMusic;
 }
 
@@ -30,12 +32,20 @@ public class GameManager : MonoBehaviour
     public GameSetting gameSetting;
     public GameObject[] LetterParts;
     public AudioClip ClearSound;
-    private string BeginningGuideString = "안녕 친구들!​\n마법 요리사 라이야\n친구들의 도움이\n필요해";
 
     private GuideControllerScript GuideController;
 
+    private string BeginningGuideString = "안녕 친구들!​\n마법 요리사 라이야\n친구들의 도움이\n필요해";
+
+    private List<IEnumerator> enumerators = new List<IEnumerator>();
+    private IEnumerator currentEnumerator;
+
     private void Awake()
     {
+        enumerators.Add(StartGame());
+        enumerators.Add(MoveOnFirstSequence());
+
+        gameSetting.startDelay = 0.5f;
         SetInitialReferences();
     }
 
@@ -44,8 +54,14 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartGame());
     }
 
+    private void Update()
+    {
+        SkipSection();
+    }
+
     IEnumerator StartGame()
     {
+        currentEnumerator = StartGame();
         yield return new WaitForSeconds(gameSetting.startDelay);
         if (!string.IsNullOrEmpty(BeginningGuideString))
         {
@@ -59,15 +75,21 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator MoveOnFirstSequence(){
+        currentEnumerator = MoveOnFirstSequence();
         yield return new WaitForSeconds(1f);
         ListeningSequence firstSeq = this.GetComponent<ListeningSequence>();
         firstSeq.StartSequence();
     }
 
-    public void RestartGame()
+    void SkipSection()
     {
-        ScenesManager scenesManager = GameObject.FindObjectOfType<ScenesManager>();
-        scenesManager.LoadLevelByName(SceneManager.GetActiveScene().name);
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        {
+            if (gameSetting.CanSkip)
+            {
+                GuideController.Skip();
+            }
+        }
     }
 
     private void SetInitialReferences()

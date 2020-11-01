@@ -48,7 +48,6 @@ public class ListeningSequence : MonoBehaviour
         GuideController.StartGuid(sequenceGuideStrings , 0.1f,SpellTheLetter(),true);
     }
 
-
     IEnumerator SpellTheLetter()
     {
         countDownStartNumber = 3;
@@ -104,12 +103,6 @@ public class ListeningSequence : MonoBehaviour
 
     IEnumerator PronounceAlphabet()
     {
-        /*if (manager.UIElements.SpeakerButton.gameObject.activeInHierarchy == false)
-        {
-            ActivateSpeaker();
-            manager.UIElements.SpeakerButton.image.sprite = SpeakerOnSprite;
-        }*/
-
         animations.Animators.SpeakerAnimator.SetTrigger("OpenSpeaker");
         audioSource.clip = PronunciationAudio;
         audioSource.Play();

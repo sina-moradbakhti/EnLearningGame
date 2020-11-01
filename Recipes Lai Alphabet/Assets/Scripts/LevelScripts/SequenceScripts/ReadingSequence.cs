@@ -161,9 +161,10 @@ public class ReadingSequence : MonoBehaviour
 
     private void SpellingSuccess()
     {
-        animations.Animators.LaiAnimator.SetBool("cheer", true);
-        animations.Animators.BekiAnimator.SetBool("cheer", true);
-        manager.UIElements.ClearPanel.gameObject.SetActive(true);
+        manager.UIElements.WinPanel.gameObject.SetActive(true);
+        //animations.Animators.LaiAnimator.SetBool("cheer", true);
+        //animations.Animators.BekiAnimator.SetBool("cheer", true);
+        //manager.UIElements.ClearPanel.gameObject.SetActive(true);
         this.GetComponent<AudioSource>().clip = manager.ClearSound;
         this.GetComponent<AudioSource>().loop = false;
         this.GetComponent<AudioSource>().Play();
@@ -174,6 +175,7 @@ public class ReadingSequence : MonoBehaviour
     {
         clearResult = true;
         yield return new WaitForSeconds(2.5f);
+        manager.UIElements.WinPanel.gameObject.SetActive(false);
         manager.UIElements.ClearPanel.gameObject.SetActive(false);
         WritingSequence writingSequence = this.GetComponent<WritingSequence>();
         writingSequence.StartSequence();

@@ -100,6 +100,8 @@ public class WritingSequence : MonoBehaviour
         PlayerCanDraw = true;
     }
 
+    public GameObject guidePointToClear;
+    int guidePointIndex = 0;
     private void ActivateGuide(int guideIndex)
     {
         currentGuid = drawGuids[guideIndex];
@@ -115,8 +117,18 @@ public class WritingSequence : MonoBehaviour
 
         currentGuid.GuideStars[1].GetComponent<Image>().sprite = starCompleteSprite;
 
+        guidePointIndex = 0;
+        guidePointToClear = currentGuid.GuidePoints[guidePointIndex];
+
         startPart = currentGuid.GuideParts[0];
         endPart = currentGuid.GuideParts[currentGuid.GuideParts.Length - 1];
+    }
+
+    public void MoveOnGuidePoints()
+    {
+        guidePointIndex++;
+        if (guidePointIndex < currentGuid.GuidePoints.Length)
+            guidePointToClear = currentGuid.GuidePoints[guidePointIndex];
     }
 
     public void ClearPart(GameObject part)
@@ -190,11 +202,6 @@ public class WritingSequence : MonoBehaviour
     private void ShowWinPanel()
     {
         manager.UIElements.WinPanel.gameObject.SetActive(true);
-        //manager.UIElements.ExitButton.gameObject.SetActive(true);
-        //manager.UIElements.RetryButton.gameObject.SetActive(true);
-
-        animations.Animators.LaiAnimator.SetBool("cheer", true);
-        animations.Animators.BekiAnimator.SetBool("cheer", true);
 
         this.GetComponent<AudioSource>().clip = manager.ClearSound;
         this.GetComponent<AudioSource>().loop = false;
@@ -217,7 +224,7 @@ public class WritingSequence : MonoBehaviour
 
             int newLevelIndex = currentLevelIndex + 1;
 
-            if(levelBuildIndex == newLevelIndex)
+            if(levelBuildIndex == newLevelIndex && newLevelIndex < 4)
             {
                 PlayerPrefs.SetInt("CurrentLevelIndex",newLevelIndex);
             }
@@ -240,13 +247,13 @@ public class WritingSequence : MonoBehaviour
 
     private void SetInitialReferences()
     {
-        SetGuidStars();
+        SetGuidStarsAndPoints();
         GuideController = this.GetComponent<GuideControllerScript>();
         manager = this.GetComponent<GameManager>();
         animations = this.GetComponent<AnimationsController>();
     }
 
-    private void SetGuidStars()
+    private void SetGuidStarsAndPoints()
     {
         foreach (DrawGuid guid in drawGuids)
         {
@@ -255,6 +262,13 @@ public class WritingSequence : MonoBehaviour
             for (int i = 0; i < stars.Length; i++)
             {
                 guid.GuideStars[i] = stars[i].gameObject;
+            }
+
+            GuidePointsScript[] guidePoints = guid.GuideObject.GetComponentsInChildren<GuidePointsScript>();
+            guid.GuidePoints = new GameObject[guidePoints.Length];
+            for (int i = 0; i < guidePoints.Length; i++)
+            {
+                guid.GuidePoints[i] = guidePoints[i].gameObject;
             }
         }
     }
@@ -266,4 +280,5 @@ public class DrawGuid
     public GameObject GuideObject;
     public GameObject[] GuideParts;
     public GameObject[] GuideStars { get; set; }
+    public GameObject[] GuidePoints { get; set; }
 }

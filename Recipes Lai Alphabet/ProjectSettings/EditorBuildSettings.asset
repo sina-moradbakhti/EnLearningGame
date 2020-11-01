@@ -27,6 +27,36 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Small-letters-level/E_small.unity
     guid: 216373c625efe9b4393a6a645bcdcb74
   - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/F_small.unity
+    guid: b7743d4511fbc954aba3f0a597805c7c
+  - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/G_small.unity
+    guid: deb86b0710888be40814e1022b2b7a12
+  - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/H_small.unity
+    guid: e66237d1f7f68c34bae678d125bc40b1
+  - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/I_small.unity
+    guid: 8a89e89e8d7d47a469b42c6d03507988
+  - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/J_small.unity
+    guid: af54fa7fc9d17994f8e0069fbf9bc176
+  - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/K_small.unity
+    guid: 8c017be427a80974e9494c9b11f05b81
+  - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/L_small.unity
+    guid: 1c4210c103327e543a0bdb4105af86e0
+  - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/M_small.unity
+    guid: 091c6c9699926db4abce0fbf2d5319ef
+  - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/N_small.unity
+    guid: 5aea993cf01e90541a2d94c02146d0d5
+  - enabled: 1
+    path: Assets/Scenes/Levels/Small-letters-level/O_small.unity
+    guid: 84f2533fb7516104b92e7855170c2fd1
+  - enabled: 1
     path: Assets/Scenes/Levels/Capital-letters-levels/A_Capital.unity
     guid: 806173b39911843489dcc40cff3e9888
   - enabled: 1
@@ -41,4 +71,34 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Capital-letters-levels/E_Capital.unity
     guid: 6b8a708c230b7ba4588b4e68e330c638
+  - enabled: 1
+    path: Assets/Scenes/Levels/Capital-letters-levels/F_Capital.unity
+    guid: b5b7601cb884d0d42966092f261c1a1d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Capital-letters-levels/G_Capital.unity
+    guid: a526772de707a354fbcad99e5466c3a6
+  - enabled: 1
+    path: Assets/Scenes/Levels/Capital-letters-levels/H_Capital.unity
+    guid: c15c0e882700bc54e9e4de4c8e5e69bf
+  - enabled: 1
+    path: Assets/Scenes/Levels/Capital-letters-levels/I_Capital.unity
+    guid: 910a733152ab8c541a14ba740f7764ce
+  - enabled: 1
+    path: Assets/Scenes/Levels/Capital-letters-levels/J_Capital.unity
+    guid: 84f74e39ed8fce0459b407ff9d86e9f3
+  - enabled: 1
+    path: Assets/Scenes/Levels/Capital-letters-levels/K_Capital.unity
+    guid: 371adc9a5f077084db651740c2b233e5
+  - enabled: 1
+    path: Assets/Scenes/Levels/Capital-letters-levels/L_Capital.unity
+    guid: cf9923257e966c04a898220017282d77
+  - enabled: 1
+    path: Assets/Scenes/Levels/Capital-letters-levels/M_Capital.unity
+    guid: a499d66f48f7b954dbd7a05045218e61
+  - enabled: 1
+    path: Assets/Scenes/Levels/Capital-letters-levels/N_Capital.unity
+    guid: dda19ef4526ab2e43ae4e49e08227e98
+  - enabled: 1
+    path: Assets/Scenes/Levels/Capital-letters-levels/O_Capital.unity
+    guid: 5a246cc96fccacd4d8351bc0dc52bd37
   m_configObjects: {}

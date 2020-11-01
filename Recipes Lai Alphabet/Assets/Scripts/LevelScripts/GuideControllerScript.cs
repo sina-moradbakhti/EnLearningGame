@@ -31,15 +31,10 @@ public class GuideControllerScript : MonoBehaviour
         this.typeSpeed = typeSpeed;
         this.MoveOnEnumerator = MoveOnEnumerator;
         reset = resetGuideAfterType;
-        firstSpeed = typeSpeed;
+        firstSpeed = typeSpeed; //false -> type Guide - true -> skiped
         charIndex = 0;
         manager.UIElements.CharacterSpeechCloud.gameObject.SetActive(true);
         animations.Animators.SpeakerCloudAnimation.SetBool("showGuide", true);
-        Invoke("activeTypeGuide", 0.5f);
-    }
-
-    private void activeTypeGuide()
-    {
         typeGuide = true;
         animations.Animators.LaiAnimator.SetBool("explain", true);
         animations.Animators.BekiAnimator.SetBool("explain", true);
@@ -75,13 +70,20 @@ public class GuideControllerScript : MonoBehaviour
 
     public void Reset()
     {
+        typeGuide = false;
+        manager.UIElements.CharacterSpeechText.text = "";
         animations.Animators.LaiAnimator.SetBool("explain", false);
         animations.Animators.BekiAnimator.SetBool("explain", false);
         animations.Animators.SpeakerCloudAnimation.SetBool("showGuide", false);
-        manager.UIElements.CharacterSpeechText.text = "";
-        if (MoveOnEnumerator == null) return;
-        else
+
+        if (MoveOnEnumerator != null) {
             StartCoroutine(MoveOnEnumerator);
+        } 
+    }
+
+    public void Skip()
+    {
+        Reset();
     }
 
     private void SetInitialReferences()
