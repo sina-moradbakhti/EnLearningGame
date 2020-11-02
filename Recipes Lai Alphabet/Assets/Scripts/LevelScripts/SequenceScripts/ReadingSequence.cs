@@ -18,6 +18,7 @@ public class ReadingSequence : MonoBehaviour
     private int maxFreq;
     private AudioSource source;
     private AudioClip clip;
+    private AudioClip failureSound;
 
     bool showResult = false;
     bool clearResult = false;
@@ -125,7 +126,7 @@ public class ReadingSequence : MonoBehaviour
     public void StopRecording()
     {
         animations.Animators.LaiAnimator.SetBool("speak", false);
-        MusicManager.musicManager.ChangeMusicVolume(0.4f, 0.25f);
+        MusicManager.musicManager.ChangeMusicVolume(0.32f, 0.25f);
 
         //if (micConnected && Microphone.IsRecording(null))
         //{
@@ -167,6 +168,7 @@ public class ReadingSequence : MonoBehaviour
         //manager.UIElements.ClearPanel.gameObject.SetActive(true);
         this.GetComponent<AudioSource>().clip = manager.ClearSound;
         this.GetComponent<AudioSource>().loop = false;
+        this.GetComponent<AudioSource>().volume = 1;
         this.GetComponent<AudioSource>().Play();
         StartCoroutine(MoveToWritingSequence());
     }
@@ -186,6 +188,11 @@ public class ReadingSequence : MonoBehaviour
 
     private void SpellingFailed()
     {
+        MusicManager.musicManager.ChangeMusicVolume(0f, 0.75f);
+        this.GetComponent<AudioSource>().clip = failureSound;
+        this.GetComponent<AudioSource>().loop = false;
+        this.GetComponent<AudioSource>().volume = 1;
+        this.GetComponent<AudioSource>().Play();
         manager.UIElements.MicrophonePanel.gameObject.SetActive(false);
         string message = "실망하지 마세요\n다시 시작해 봐요!\n라이와 함께 GO~";
         GuideControllerScript.StartGuid(message, 0.1f, ListenAgain(), true);
@@ -195,6 +202,8 @@ public class ReadingSequence : MonoBehaviour
     {
         clearResult = true;
         yield return new WaitForSeconds(2f);
+        this.GetComponent<AudioSource>().mute = true;
+        MusicManager.musicManager.ChangeMusicVolume(0.32f, 0.75f);
         ListeningSequence firstSeq = this.GetComponent<ListeningSequence>();
         firstSeq.StartSequence();
     }
@@ -220,6 +229,7 @@ public class ReadingSequence : MonoBehaviour
 
     private void SetInitialReferences()
     {
+        failureSound = Resources.Load<AudioClip>("Speak_Failure");
         manager = this.GetComponent<GameManager>();
         GuideControllerScript = this.GetComponent<GuideControllerScript>();
         animations = this.GetComponent<AnimationsController>();

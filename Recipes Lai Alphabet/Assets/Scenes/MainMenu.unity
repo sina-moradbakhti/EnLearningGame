@@ -213,7 +213,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: D_Capital
+          m_StringArgument: D_Capital@D_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &67175361
@@ -344,7 +344,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: K_Capital
+          m_StringArgument: K_Capital@K_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &155417482
@@ -475,7 +475,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: W_Capital
+          m_StringArgument: W_Capital@W_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &264044001
@@ -606,7 +606,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: G_Capital
+          m_StringArgument: G_Capital@G_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &272763089
@@ -737,7 +737,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: T_Capital
+          m_StringArgument: T_Capital@T_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &314441567
@@ -943,7 +943,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: M_Capital
+          m_StringArgument: M_Capital@M_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &387470739
@@ -1074,7 +1074,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Q_Capital
+          m_StringArgument: Q_Capital@Q_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &430917304
@@ -1205,7 +1205,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: U_Capital
+          m_StringArgument: U_Capital@U_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &456880406
@@ -1485,7 +1485,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: C_Capital
+          m_StringArgument: C_Capital@C_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &656558093
@@ -1616,7 +1616,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: S_Capital
+          m_StringArgument: S_Capital@s_Small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &674238204
@@ -1747,7 +1747,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: J_Capital
+          m_StringArgument: J_Capital@J_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &785491400
@@ -2094,7 +2094,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: P_Capital
+          m_StringArgument: P_Capital@P_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &910607164
@@ -2225,7 +2225,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: B_Capital
+          m_StringArgument: B_Capital@B_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &943559682
@@ -2451,7 +2451,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: N_Capital
+          m_StringArgument: N_Capital@N_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1063913357
@@ -2582,7 +2582,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: R_Capital
+          m_StringArgument: R_Capital@R_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1136247762
@@ -2713,7 +2713,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: V_Capital
+          m_StringArgument: V_Capital@V_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1238897571
@@ -2844,7 +2844,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: F_Capital
+          m_StringArgument: F_Capital@F_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1350785143
@@ -3147,7 +3147,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: E_Capital
+          m_StringArgument: E_Capital@E_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1635985844
@@ -3278,7 +3278,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: X_Capital
+          m_StringArgument: X_Capital@X_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1644743972
@@ -3409,7 +3409,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: O_Capital
+          m_StringArgument: O_Capital@O_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1657122289
@@ -3540,7 +3540,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Z_Capital
+          m_StringArgument: Z_Capital@Z_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1720631947
@@ -3671,7 +3671,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: H_Capital
+          m_StringArgument: H_Capital@H_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1823955181
@@ -3802,7 +3802,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: L_Capital
+          m_StringArgument: L_Capital@@L_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1831040282
@@ -3938,7 +3938,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Y_Capital
+          m_StringArgument: Y_Capital@Y_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1883272440
@@ -4069,7 +4069,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: I_Capital
+          m_StringArgument: I_Capital@I_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1891137901
@@ -4200,7 +4200,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: A_Capital
+          m_StringArgument: A_Capital@A_small
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1936156971
@@ -4429,7 +4429,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -51.00006, y: -18}
+  m_AnchoredPosition: {x: -51, y: -18}
   m_SizeDelta: {x: 1849.3619, y: 1040.2661}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2583411952866679604

@@ -124,7 +124,7 @@ public class ListeningSequence : MonoBehaviour
         animations.Animators.LaiAnimator.SetBool("listen", false);
         //DeactivateSpeaker();
         GuideController.Reset();
-        MusicManager.musicManager.ChangeMusicVolume(0.4f, 0.25f);
+        MusicManager.musicManager.ChangeMusicVolume(0.32f, 0.25f);
         Invoke("MoveOnSecondSequence", 1f);
     }
 

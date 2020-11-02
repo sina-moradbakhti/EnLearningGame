@@ -23,7 +23,7 @@ public struct GameSetting
 {
     public bool CanSkip;
     public float startDelay { get; set; }
-    public AudioClip levelMusic;
+    public AudioClip levelMusic { get; set; }
 }
 
 public class GameManager : MonoBehaviour
@@ -94,6 +94,8 @@ public class GameManager : MonoBehaviour
 
     private void SetInitialReferences()
     {
+        gameSetting.levelMusic = Resources.Load<AudioClip>("Level_BackgroundMusic");
+
         GuideController = GameObject.FindObjectOfType<GuideControllerScript>();
 
         if (gameSetting.levelMusic != null && MusicManager.musicManager.music != gameSetting.levelMusic)
@@ -101,7 +103,7 @@ public class GameManager : MonoBehaviour
             MusicManager.musicManager.music = gameSetting.levelMusic;
             MusicManager.musicManager.PlayMusic();
         }
-        MusicManager.musicManager.ChangeMusicVolume(0.4f, 0.75f);
+        MusicManager.musicManager.ChangeMusicVolume(0.32f, 0.75f);
     }
 
 }

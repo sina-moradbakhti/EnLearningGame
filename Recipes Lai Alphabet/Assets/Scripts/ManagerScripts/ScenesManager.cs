@@ -20,8 +20,40 @@ public class ScenesManager : MonoBehaviour
 
     public void LoadLevelByName(string name)
     {
-        MusicManager.musicManager.ChangeMusicVolume(0f,0.75f);
-        StartCoroutine(PlayTransition(name));
+        MusicManager.musicManager.ChangeMusicVolume(0f, 0.75f);
+
+        if (name == "MainMenu")
+        {
+            PlayerBrush playerBrush = GameObject.FindObjectOfType<PlayerBrush>();
+            if(playerBrush != null && playerBrush.gameObject.activeInHierarchy)
+            {
+                playerBrush.gameObject.SetActive(false);
+            }
+            StartCoroutine(PlayTransition(name));
+        }
+
+        if (SceneManager.GetActiveScene().name ==  "MainMenu")
+        {
+            string[] levelNames = name.Split("@".ToCharArray());
+            string capitalLevelName = levelNames[0];
+            string smallLevelName = levelNames[1];
+
+            if (PlayerPrefs.HasKey("SmallLevelToActive"))
+            {
+                if (smallLevelName == PlayerPrefs.GetString("SmallLevelToActive"))
+                {
+                    StartCoroutine(PlayTransition(smallLevelName));
+                }
+                else
+                {
+                    StartCoroutine(PlayTransition(capitalLevelName));
+                }
+            }
+            else
+            {
+                StartCoroutine(PlayTransition(capitalLevelName));
+            }
+        }
     }
 
     public void ReloadScene()

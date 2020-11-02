@@ -5283,7 +5283,6 @@ MonoBehaviour:
     ResultImage: {fileID: 1589947845}
   gameSetting:
     CanSkip: 0
-    levelMusic: {fileID: 8300000, guid: a512db2bd0c7ccf4ab42c14176fa898e, type: 3}
   LetterParts:
   - {fileID: 4879586116129619738}
   - {fileID: 7708205448148871440}

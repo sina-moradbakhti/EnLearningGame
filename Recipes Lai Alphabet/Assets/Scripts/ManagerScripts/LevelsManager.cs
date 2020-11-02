@@ -28,12 +28,35 @@ public class LevelsManager : MonoBehaviour
 
     private void UnlockLevels(int currentLevelIndex)
     {
+        string LetterToChangeToSmall;
+        if (PlayerPrefs.HasKey("SmallLevelToActive"))
+        {
+            string[] smallLevelToActive = PlayerPrefs.GetString("SmallLevelToActive").Split("_".ToCharArray());
+            LetterToChangeToSmall = smallLevelToActive[0];
+
+            foreach (Button levelBtn in alphabetsLevels)
+            {
+                if (levelBtn.name == LetterToChangeToSmall)
+                {
+                    levelBtn.image.sprite = Resources.Load<Sprite>("SmallLettersButtonIcons/" + LetterToChangeToSmall.ToLower());
+
+                    SpriteState spriteState = new SpriteState();
+                    spriteState.pressedSprite = Resources.Load<Sprite>("SmallLettersButtonIcons/clicked/" + LetterToChangeToSmall.ToLower());
+                    levelBtn.spriteState = spriteState;
+                }
+            }
+        }
+
         for (int i = 0; i < alphabetsLevels.Length; i++)
         {
-            if ((i + 1) <= currentLevelIndex) 
+            if ((i + 1) <= currentLevelIndex)
+            {
                 alphabetsLevels[i].interactable = true;
-            else    
+            }
+            else
+            {
                 alphabetsLevels[i].interactable = false;
+            }
         }
     }
 
