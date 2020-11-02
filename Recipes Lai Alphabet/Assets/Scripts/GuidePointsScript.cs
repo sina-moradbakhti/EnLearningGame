@@ -29,13 +29,13 @@ public class GuidePointsScript : MonoBehaviour
 
         //    float distance = Vector2.Distance(pointPos, mousePos);
 
-        //    if (distance <= 0.7f)
+        //    if (distance <= 0.85f)
         //    {
         //        ClearPoint();
         //    }
         //}
 
-        #if UNITY_ANDROID
+        #if UNITY_IOS
                 if (Input.touchCount > 0 && !cleared)
                 {
                     Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
@@ -45,7 +45,7 @@ public class GuidePointsScript : MonoBehaviour
 
                     float distance = Vector2.Distance(pointPos, mousePos);
 
-                    if (distance <= 0.7f)
+                    if (distance <= 0.85f)
                     {
                         ClearPoint();
                     }

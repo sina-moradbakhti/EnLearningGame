@@ -49,7 +49,7 @@ public class PlayerBrush : MonoBehaviour
 //        }
 //#endif
 
-#if UNITY_ANDROID
+#if UNITY_IOS
         if (Input.touchCount > 0)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
