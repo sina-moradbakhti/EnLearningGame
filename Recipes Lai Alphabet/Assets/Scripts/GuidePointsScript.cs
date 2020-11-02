@@ -29,14 +29,14 @@ public class GuidePointsScript : MonoBehaviour
 
         //    float distance = Vector2.Distance(pointPos, mousePos);
 
-        //    if (distance <= 0.5f)
+        //    if (distance <= 0.7f)
         //    {
         //        ClearPoint();
         //    }
         //}
 
         #if UNITY_ANDROID
-                if (Input.touchCount > 0)
+                if (Input.touchCount > 0 && !cleared)
                 {
                     Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
                     mousePos.z = 50f;
