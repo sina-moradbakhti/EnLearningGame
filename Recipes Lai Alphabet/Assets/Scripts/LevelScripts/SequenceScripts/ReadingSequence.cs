@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
+using System.IO;
 using UnityEngine;
-//using UnityEngine.Android;
+using UnityEngine.Networking;
+using System.Net;
 
 public class ReadingSequence : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ReadingSequence : MonoBehaviour
     GuideControllerScript GuideControllerScript;
     AnimationsController animations;
     ListeningSequence listening;
+    WritingSequence writing;
 
     private bool micConnected = false;
     private bool takeMicrophone = false;
@@ -32,7 +34,7 @@ public class ReadingSequence : MonoBehaviour
     void Start()
     {
         source = this.GetComponent<AudioSource>();
-        //CheckForMicrophine();
+        CheckForMicrophine();
     }
 
     private void Update()
@@ -114,37 +116,76 @@ public class ReadingSequence : MonoBehaviour
 
     private void StartRecording()
     {
-        /*if (micConnected && !Microphone.IsRecording(null))
+        if (micConnected && !Microphone.IsRecording(null))
         {
-            clip = Microphone.Start(null, true, 20, maxFreq);
+            clip = Microphone.Start(null, true, 2, maxFreq);
             source.clip = clip;
-        }*/
+        }
 
-        Invoke("StopRecording", 1.8f);
+        Invoke("StopRecording", 2f);
     }
 
-    public void StopRecording()
+    private void StopRecording()
     {
         animations.Animators.LaiAnimator.SetBool("speak", false);
-        MusicManager.musicManager.ChangeMusicVolume(0.32f, 0.25f);
 
-        //if (micConnected && Microphone.IsRecording(null))
-        //{
-            //animations.Animators.MicAnimator.SetBool("Recording", false);
+        if (micConnected && Microphone.IsRecording(null))
+        {
             Microphone.End(null);
-            StartCoroutine(AISpellingCheck(clip));
-            //source.Play();
-        //}
+            SaveWav.Save("SpellingAudio", clip);
+            CheckForConnection();
+        }
     }
 
-    IEnumerator AISpellingCheck(AudioClip clip)
+    public void CheckForConnection()
     {
-        float testResult;
-        //Do the API job
-        testResult = 0.8f/*UnityEngine.Random.Range(0.1f, 1)*/;
-        yield return new WaitForSeconds(1f);
+        string HtmlText = GetHtmlFromUri("http://google.com");
+        if (HtmlText == "" || !HtmlText.Contains("schema.org/WebPage"))
+        {
+            if (!manager.UIElements.ConnectionCheckPanel.gameObject.activeInHierarchy)
+            {
+                manager.UIElements.ConnectionCheckPanel.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            if (manager.UIElements.ConnectionCheckPanel.gameObject.activeInHierarchy)
+            {
+                manager.UIElements.ConnectionCheckPanel.gameObject.SetActive(false);
+            }
 
-        ShowResult(testResult);
+            StartCoroutine(AISpellingCheck());
+        }
+    }
+
+    IEnumerator AISpellingCheck()
+    {
+        yield return new WaitForSeconds(1f);
+        string url = "https://dl1.youtubot.co.kr/studioBong/save.php";
+        List<IMultipartFormSection> form = new List<IMultipartFormSection>();
+
+        string path = Path.Combine(Application.persistentDataPath,"SpellingAudio.wav");
+        UnityWebRequest Audio = UnityWebRequest.Get(path);
+        yield return Audio.SendWebRequest();
+
+        form.Add(new MultipartFormDataSection("sbval", writing.LetterToDraw.ToString().ToLower()));
+        form.Add(new MultipartFormFileSection("sbfile", Audio.downloadHandler.data, "SpellingAudio.wav", "audio/wav"));
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (!www.isNetworkError)
+            {
+                MusicManager.musicManager.ChangeMusicVolume(0.32f, 0.25f);
+                float result = Convert.ToInt32(www.downloadHandler.text);
+                ShowResult(result);
+            }
+            else
+            {
+                CheckForConnection();
+            }
+        }   
     }
 
     public void ShowResult(float result)
@@ -179,8 +220,7 @@ public class ReadingSequence : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         manager.UIElements.WinPanel.gameObject.SetActive(false);
         manager.UIElements.ClearPanel.gameObject.SetActive(false);
-        WritingSequence writingSequence = this.GetComponent<WritingSequence>();
-        writingSequence.StartSequence();
+        writing.StartSequence();
         manager.UIElements.ResultImage.gameObject.SetActive(false);
         animations.Animators.LaiAnimator.SetBool("cheer", false);
         animations.Animators.BekiAnimator.SetBool("cheer", false);
@@ -217,7 +257,7 @@ public class ReadingSequence : MonoBehaviour
 
             if (minFreq == 0 && maxFreq == 0)
             {
-                maxFreq = 44100;
+                maxFreq = 84100;
             }
 
         }
@@ -234,5 +274,36 @@ public class ReadingSequence : MonoBehaviour
         GuideControllerScript = this.GetComponent<GuideControllerScript>();
         animations = this.GetComponent<AnimationsController>();
         listening = this.GetComponent<ListeningSequence>();
+        writing = this.GetComponent<WritingSequence>();
+    }
+
+    public string GetHtmlFromUri(string resource)
+    {
+        string html = string.Empty;
+        HttpWebRequest req = (HttpWebRequest)WebRequest.Create(resource);
+        try
+        {
+            using (HttpWebResponse resp = (HttpWebResponse)req.GetResponse())
+            {
+                bool isSuccess = (int)resp.StatusCode < 299 && (int)resp.StatusCode >= 200;
+                if (isSuccess)
+                {
+                    using (StreamReader reader = new StreamReader(resp.GetResponseStream()))
+                    {
+                        char[] cs = new char[80];
+                        reader.Read(cs, 0, cs.Length);
+                        foreach (char ch in cs)
+                        {
+                            html += ch;
+                        }
+                    }
+                }
+            }
+        }
+        catch
+        {
+            return "";
+        }
+        return html;
     }
 }

@@ -1,10 +1,15 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
-using System.Diagnostics.Eventing.Reader;
+
+#if PLATFORM_IOS
+using UnityEngine.iOS;
+#endif
+
+#if PLATFORM_ANDROID
+using UnityEngine.Android;
+#endif
 
 [System.Serializable]
 public struct UIElements{
@@ -15,6 +20,7 @@ public struct UIElements{
     public RectTransform ClearPanel;
     public RectTransform WinPanel;
     public RectTransform MicrophonePanel;
+    public RectTransform ConnectionCheckPanel;
     public Image ResultImage;
 }
 
@@ -37,16 +43,28 @@ public class GameManager : MonoBehaviour
 
     private string BeginningGuideString = "안녕 친구들!​\n마법 요리사 라이야\n친구들의 도움이\n필요해";
 
-    private List<IEnumerator> enumerators = new List<IEnumerator>();
-    private IEnumerator currentEnumerator;
-
     private void Awake()
     {
-        enumerators.Add(StartGame());
-        enumerators.Add(MoveOnFirstSequence());
-
+        CheckMicrophonePermission();
         gameSetting.startDelay = 0.5f;
         SetInitialReferences();
+    }
+
+    void CheckMicrophonePermission()
+    {
+#if PLATFORM_IOS
+        if (!Application.HasUserAuthorization(UserAuthorization.Microphone))
+        {
+            Application.RequestUserAuthorization(UserAuthorization.Microphone);
+        }
+#endif
+
+#if PLATFORM_ANDROID
+        if (!Permission.HasUserAuthorizedPermission(Permission.Microphone))
+        {
+            Permission.RequestUserPermission(Permission.Microphone);
+        }
+#endif
     }
 
     private void Start()
@@ -61,7 +79,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        currentEnumerator = StartGame();
         yield return new WaitForSeconds(gameSetting.startDelay);
         if (!string.IsNullOrEmpty(BeginningGuideString))
         {
@@ -75,7 +92,6 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator MoveOnFirstSequence(){
-        currentEnumerator = MoveOnFirstSequence();
         yield return new WaitForSeconds(1f);
         ListeningSequence firstSeq = this.GetComponent<ListeningSequence>();
         firstSeq.StartSequence();
@@ -83,7 +99,7 @@ public class GameManager : MonoBehaviour
 
     void SkipSection()
     {
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        if (/*Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began*/ Input.GetMouseButtonDown(0))
         {
             if (gameSetting.CanSkip)
             {

@@ -45,6 +45,7 @@ public class ListeningSequence : MonoBehaviour
 
     public void StartSequence()
     {
+        this.GetComponent<AudioSource>().mute = false;
         GuideController.StartGuid(sequenceGuideStrings , 0.1f,SpellTheLetter(),true);
     }
 
