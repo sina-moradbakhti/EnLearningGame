@@ -133,14 +133,14 @@ public class ReadingSequence : MonoBehaviour
         {
             Microphone.End(null);
             SaveWav.Save("SpellingAudio", clip);
-            CheckForConnection();
+            StartCoroutine(AISpellingCheck());
+            //CheckForConnection();
         }
     }
 
     public void CheckForConnection()
     {
-        string HtmlText = GetHtmlFromUri("http://google.com");
-        if (HtmlText == "" || !HtmlText.Contains("schema.org/WebPage"))
+        if (Application.internetReachability == NetworkReachability.NotReachable)
         {
             if (!manager.UIElements.ConnectionCheckPanel.gameObject.activeInHierarchy)
             {
@@ -160,7 +160,6 @@ public class ReadingSequence : MonoBehaviour
 
     IEnumerator AISpellingCheck()
     {
-        yield return new WaitForSeconds(1f);
         string url = "https://dl1.youtubot.co.kr/studioBong/save.php";
         List<IMultipartFormSection> form = new List<IMultipartFormSection>();
 
@@ -173,8 +172,8 @@ public class ReadingSequence : MonoBehaviour
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
+            www.timeout = 4;
             yield return www.SendWebRequest();
-
             if (!www.isNetworkError)
             {
                 MusicManager.musicManager.ChangeMusicVolume(0.32f, 0.25f);
@@ -183,9 +182,9 @@ public class ReadingSequence : MonoBehaviour
             }
             else
             {
-                CheckForConnection();
+                ShowResult(0);
             }
-        }   
+        }
     }
 
     public void ShowResult(float result)
@@ -275,35 +274,5 @@ public class ReadingSequence : MonoBehaviour
         animations = this.GetComponent<AnimationsController>();
         listening = this.GetComponent<ListeningSequence>();
         writing = this.GetComponent<WritingSequence>();
-    }
-
-    public string GetHtmlFromUri(string resource)
-    {
-        string html = string.Empty;
-        HttpWebRequest req = (HttpWebRequest)WebRequest.Create(resource);
-        try
-        {
-            using (HttpWebResponse resp = (HttpWebResponse)req.GetResponse())
-            {
-                bool isSuccess = (int)resp.StatusCode < 299 && (int)resp.StatusCode >= 200;
-                if (isSuccess)
-                {
-                    using (StreamReader reader = new StreamReader(resp.GetResponseStream()))
-                    {
-                        char[] cs = new char[80];
-                        reader.Read(cs, 0, cs.Length);
-                        foreach (char ch in cs)
-                        {
-                            html += ch;
-                        }
-                    }
-                }
-            }
-        }
-        catch
-        {
-            return "";
-        }
-        return html;
     }
 }

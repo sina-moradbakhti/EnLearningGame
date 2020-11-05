@@ -5727,7 +5727,7 @@ MonoBehaviour:
     ConnectionCheckPanel: {fileID: 622851657}
     ResultImage: {fileID: 1589947845}
   gameSetting:
-    CanSkip: 0
+    CanSkip: 1
   LetterParts:
   - {fileID: 4879586116129619738}
   - {fileID: 7708205448148871440}
