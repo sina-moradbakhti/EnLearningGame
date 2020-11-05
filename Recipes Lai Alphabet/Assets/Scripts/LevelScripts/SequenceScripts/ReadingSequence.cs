@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
-using System.Net;
 
 public class ReadingSequence : MonoBehaviour
 {
@@ -34,7 +33,6 @@ public class ReadingSequence : MonoBehaviour
     void Start()
     {
         source = this.GetComponent<AudioSource>();
-        CheckForMicrophine();
     }
 
     private void Update()
@@ -78,6 +76,7 @@ public class ReadingSequence : MonoBehaviour
     }
     public void StartSequence()
     {
+        CheckForMicrophine();
         string message = "친구들!​\n마법의 주문을\n잘 들었나요?";
         GuideControllerScript.StartGuid(message,0.1f, FirstGuide(), true);
     }
@@ -133,8 +132,7 @@ public class ReadingSequence : MonoBehaviour
         {
             Microphone.End(null);
             SaveWav.Save("SpellingAudio", clip);
-            StartCoroutine(AISpellingCheck());
-            //CheckForConnection();
+            CheckForConnection();
         }
     }
 
@@ -160,19 +158,19 @@ public class ReadingSequence : MonoBehaviour
 
     IEnumerator AISpellingCheck()
     {
+        yield return new WaitForSeconds(1f);
         string url = "https://dl1.youtubot.co.kr/studioBong/save.php";
         List<IMultipartFormSection> form = new List<IMultipartFormSection>();
 
         string path = Path.Combine(Application.persistentDataPath,"SpellingAudio.wav");
-        UnityWebRequest Audio = UnityWebRequest.Get(path);
-        yield return Audio.SendWebRequest();
+        byte[] AudioBytes = File.ReadAllBytes(path);
 
         form.Add(new MultipartFormDataSection("sbval", writing.LetterToDraw.ToString().ToLower()));
-        form.Add(new MultipartFormFileSection("sbfile", Audio.downloadHandler.data, "SpellingAudio.wav", "audio/wav"));
+        form.Add(new MultipartFormFileSection("sbfile", AudioBytes, "SpellingAudio.wav", "audio/wav"));
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
-            www.timeout = 4;
+            //www.timeout = 4;
             yield return www.SendWebRequest();
             if (!www.isNetworkError)
             {

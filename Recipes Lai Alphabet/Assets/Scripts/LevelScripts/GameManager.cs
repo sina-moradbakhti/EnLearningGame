@@ -45,12 +45,12 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        CheckMicrophonePermission();
+        CheckPermissions();
         gameSetting.startDelay = 0.5f;
         SetInitialReferences();
     }
 
-    void CheckMicrophonePermission()
+    void CheckPermissions()
     {
 #if PLATFORM_IOS
         if (!Application.HasUserAuthorization(UserAuthorization.Microphone))
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
 
     void SkipSection()
     {
-        if (/*Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began*/ Input.GetMouseButtonDown(0))
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
             if (gameSetting.CanSkip)
             {
