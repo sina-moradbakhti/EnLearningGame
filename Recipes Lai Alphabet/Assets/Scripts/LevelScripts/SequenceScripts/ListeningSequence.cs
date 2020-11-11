@@ -12,7 +12,6 @@ public class ListeningSequence : MonoBehaviour
 
     public AudioClip PronunciationAudio;
     public AudioClip CountdownAudio;
-    public int RepeatCount = 3;
     public float RepeatDelay = 1f;
     public float CountDownDelay = 1f;
     public GameObject[] CountDownObjects;
@@ -23,8 +22,7 @@ public class ListeningSequence : MonoBehaviour
 
     private string sequenceGuideStrings = "1,2,3 하면\n마법의 주문이\n들려요!";
     private bool takeSpeaker = false;
-    private int repeatCount;
-
+    private int repeatCount = 2;
 
     private void Awake()
     {
@@ -45,7 +43,6 @@ public class ListeningSequence : MonoBehaviour
 
     public void StartSequence()
     {
-        this.GetComponent<AudioSource>().mute = false;
         GuideController.StartGuid(sequenceGuideStrings , 0.1f,SpellTheLetter(),true);
     }
 
@@ -96,7 +93,7 @@ public class ListeningSequence : MonoBehaviour
             {
                 obj.SetActive(false);
             }
-            repeatCount = RepeatCount;
+            repeatCount = 2;
             yield return new WaitForSeconds(1f);
             StartCoroutine(enumerator);
         }

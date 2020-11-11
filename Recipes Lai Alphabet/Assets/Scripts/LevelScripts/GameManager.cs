@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         CheckPermissions();
-        gameSetting.startDelay = 0.5f;
         SetInitialReferences();
     }
 
@@ -99,7 +98,7 @@ public class GameManager : MonoBehaviour
 
     void SkipSection()
     {
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began || Input.GetMouseButtonDown(0))
         {
             if (gameSetting.CanSkip)
             {
@@ -111,8 +110,15 @@ public class GameManager : MonoBehaviour
     private void SetInitialReferences()
     {
         gameSetting.levelMusic = Resources.Load<AudioClip>("Level_BackgroundMusic");
+        gameSetting.startDelay = 0.5f;
 
         GuideController = GameObject.FindObjectOfType<GuideControllerScript>();
+
+        Button exitBtn = GameObject.Find("Exit_Btn").GetComponent<Button>();
+        exitBtn.onClick.AddListener(() => {
+            ScenesManager scenesManager = GameObject.FindObjectOfType<ScenesManager>();
+            scenesManager.LoadLevelByName("MainMenu");
+        });
 
         if (gameSetting.levelMusic != null && MusicManager.musicManager.music != gameSetting.levelMusic)
         {

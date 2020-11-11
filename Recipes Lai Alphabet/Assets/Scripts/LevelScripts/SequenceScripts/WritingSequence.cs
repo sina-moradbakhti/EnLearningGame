@@ -83,6 +83,8 @@ public class WritingSequence : MonoBehaviour
     IEnumerator ActivateDrawingBrush()
     {
         MusicManager.musicManager.ChangeMusicVolume(0.32f, 0.25f);
+        animations.Animators.LaiAnimator.SetBool("cheer", true);
+        animations.Animators.BekiAnimator.SetBool("cheer", true);
 
         foreach (GameObject part in manager.LetterParts)
         {
@@ -116,14 +118,21 @@ public class WritingSequence : MonoBehaviour
         }
 
         if(currentGuid.GuideStars.Length > 1)
+        {
             currentGuid.GuideStars[1].GetComponent<Image>().sprite = starCompleteSprite;
+        }
         else
             currentGuid.GuideStars[0].GetComponent<Image>().sprite = starCompleteSprite;
 
-        guidePointIndex = 0;
-        guidePointToClear = currentGuid.GuidePoints[guidePointIndex];
+        if(currentGuid.GuidePoints.Length > 0)
+        {
+            guidePointIndex = 0;
+            guidePointToClear = currentGuid.GuidePoints[guidePointIndex];
+        }
+        else guidePointIndex = -1;
 
-        if(currentGuid.GuideParts.Length > 1)
+
+        if (currentGuid.GuideParts.Length > 1)
         {
             startPart = currentGuid.GuideParts[0];
         }
@@ -136,9 +145,12 @@ public class WritingSequence : MonoBehaviour
 
     public void MoveOnGuidePoints()
     {
-        guidePointIndex++;
-        if (guidePointIndex < currentGuid.GuidePoints.Length)
-            guidePointToClear = currentGuid.GuidePoints[guidePointIndex];
+        if(guidePointIndex >= 0)
+        {
+            guidePointIndex++;
+            if (guidePointIndex < currentGuid.GuidePoints.Length)
+                guidePointToClear = currentGuid.GuidePoints[guidePointIndex];
+        }
     }
 
     public void ClearPart(GameObject part)
@@ -177,16 +189,18 @@ public class WritingSequence : MonoBehaviour
                 }
                 else
                 {
-                    if(currentGuid.GuideStars.Length > 1)
-                    {
-                        GameObject star = currentGuid.GuideStars[1];
-                        star.GetComponent<Animator>().Play("Star_Disappear");
-                        //star.GetComponent<Image>().sprite = starCompleteSprite;
-                        star.AddComponent<AudioSource>();
-                        star.GetComponent<AudioSource>().loop = false;
-                        star.GetComponent<AudioSource>().clip = dingSound;
-                        star.GetComponent<AudioSource>().Play();
-                    }
+                    GameObject star;
+                    if (currentGuid.GuideStars.Length > 1)
+                        star = currentGuid.GuideStars[1];
+                    else
+                        star = currentGuid.GuideStars[0];
+
+                    star.GetComponent<Animator>().Play("Star_Disappear");
+                    //star.GetComponent<Image>().sprite = starCompleteSprite;
+                    star.AddComponent<AudioSource>();
+                    star.GetComponent<AudioSource>().loop = false;
+                    star.GetComponent<AudioSource>().clip = dingSound;
+                    star.GetComponent<AudioSource>().Play();
                     Invoke("ChangeGuide", 0.75f);
                 }
             }

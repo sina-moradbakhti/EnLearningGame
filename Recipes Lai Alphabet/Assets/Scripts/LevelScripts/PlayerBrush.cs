@@ -28,7 +28,7 @@ public class PlayerBrush : MonoBehaviour
             ReturnToFirstPos();
         }
 
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         if (Input.GetMouseButton(0))
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -47,28 +47,28 @@ public class PlayerBrush : MonoBehaviour
         {
             moveWithMouse = false;
         }
-#endif
+//#endif
 
-#if (PLATFORM_IOS || PLATFORM_ANDROID)
-        if (Input.touchCount > 0)
-        {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
-            mousePos.z = 50f;
-            Vector3 brushPos = this.transform.Find("GrabPoint").position;
-            brushPos.z = 50f;
+//#if (PLATFORM_IOS || PLATFORM_ANDROID)
+//        if (Input.touchCount > 0)
+//        {
+//            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
+//            mousePos.z = 50f;
+//            Vector3 brushPos = this.transform.Find("GrabPoint").position;
+//            brushPos.z = 50f;
 
-            float distance = Vector2.Distance(brushPos, mousePos);
+//            float distance = Vector2.Distance(brushPos, mousePos);
 
-            if (distance <= 1.6f)
-            {
-                moveWithMouse = true;
-            }
-        }
-        else
-        {
-            moveWithMouse = false;
-        }
-#endif
+//            if (distance <= 1.6f)
+//            {
+//                moveWithMouse = true;
+//            }
+//        }
+//        else
+//        {
+//            moveWithMouse = false;
+//        }
+//#endif
 
     }
 

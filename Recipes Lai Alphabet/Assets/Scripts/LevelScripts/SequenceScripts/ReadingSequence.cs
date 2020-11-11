@@ -42,7 +42,7 @@ public class ReadingSequence : MonoBehaviour
             float fillAmount = manager.UIElements.ResultImage.fillAmount;
             if (fillAmount < result)
             {
-                manager.UIElements.ResultImage.fillAmount += 0.5f * Time.deltaTime;
+                manager.UIElements.ResultImage.fillAmount += 1f * Time.deltaTime;
             }
             else
             {
@@ -57,7 +57,7 @@ public class ReadingSequence : MonoBehaviour
             float fillAmount = manager.UIElements.ResultImage.fillAmount;
             if (fillAmount > 0)
             {
-                manager.UIElements.ResultImage.fillAmount -= 0.5f * Time.deltaTime;
+                manager.UIElements.ResultImage.fillAmount -= 1f * Time.deltaTime;
             }
             else
             {
@@ -225,7 +225,7 @@ public class ReadingSequence : MonoBehaviour
 
     private void SpellingFailed()
     {
-        MusicManager.musicManager.ChangeMusicVolume(0f, 0.75f);
+        MusicManager.musicManager.ChangeMusicVolume(0f, 0.85f);
         this.GetComponent<AudioSource>().clip = failureSound;
         this.GetComponent<AudioSource>().loop = false;
         this.GetComponent<AudioSource>().volume = 1;
@@ -238,9 +238,9 @@ public class ReadingSequence : MonoBehaviour
     private IEnumerator ListenAgain()
     {
         clearResult = true;
-        yield return new WaitForSeconds(2f);
-        this.GetComponent<AudioSource>().mute = true;
-        MusicManager.musicManager.ChangeMusicVolume(0.32f, 0.75f);
+        yield return new WaitForSeconds(0.7f);
+        this.GetComponent<AudioSource>().clip = null;
+        MusicManager.musicManager.ChangeMusicVolume(0.32f, 0.85f);
         ListeningSequence firstSeq = this.GetComponent<ListeningSequence>();
         firstSeq.StartSequence();
     }
