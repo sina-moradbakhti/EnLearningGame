@@ -38,21 +38,21 @@ public class GuidePointsScript : MonoBehaviour
 	#endif
 
 	#if (PLATFORM_IOS || PLATFORM_ANDROID)
-                if (Input.touchCount > 0 && !cleared)
-                {
-                    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
-                    mousePos.z = 50f;
-                    Vector3 pointPos = this.transform.position;
-                    pointPos.z = 50f;
+        if (Input.touchCount > 0 && !cleared)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
+            mousePos.z = 50f;
+            Vector3 pointPos = this.transform.position;
+            pointPos.z = 50f;
 
-                    float distance = Vector2.Distance(pointPos, mousePos);
+            float distance = Vector2.Distance(pointPos, mousePos);
 
-                    if (distance <= 0.85f)
-                    {
-                        ClearPoint();
-                    }
-                }
-        #endif
+            if (distance <= 0.85f)
+            {
+                ClearPoint();
+            }
+        }
+    #endif
     }
 
     private void OnMouseOver()

@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
 
     void SkipSection()
     {
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began || Input.GetMouseButtonDown(0))
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
             if (gameSetting.CanSkip)
             {
@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour
 
         Button exitBtn = GameObject.Find("Exit_Btn").GetComponent<Button>();
         exitBtn.onClick.AddListener(() => {
+            this.GetComponent<AudioSource>().volume = 0;
             ScenesManager scenesManager = GameObject.FindObjectOfType<ScenesManager>();
             scenesManager.LoadLevelByName("MainMenu");
         });
