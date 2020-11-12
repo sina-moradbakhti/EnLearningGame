@@ -275,12 +275,14 @@ public class WritingSequence : MonoBehaviour
     
     private void MoveToSmallLetter()
     {
+        manager.UIElements.WinPanel.gameObject.SetActive(false);
         ScenesManager scenesManager = GameObject.FindObjectOfType<ScenesManager>();
         scenesManager.GoToSmallLetterLevel();
     }
 
     private void MoveToMainMenu()
     {
+        manager.UIElements.WinPanel.gameObject.SetActive(false);
         ScenesManager scenesManager = GameObject.FindObjectOfType<ScenesManager>();
         scenesManager.LoadLevelByName("MainMenu");
     }

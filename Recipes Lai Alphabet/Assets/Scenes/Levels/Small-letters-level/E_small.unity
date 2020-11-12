@@ -314,6 +314,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2583411953050129333, guid: 24025a3d67f86664f9d0f72d3fe29cba, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -51
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24025a3d67f86664f9d0f72d3fe29cba, type: 3}
 --- !u!224 &118693774 stripped
@@ -3791,6 +3795,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1632760103830381134, guid: 44d889e9b4765cf43ae3e45d879b1fe6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -51.003906
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44d889e9b4765cf43ae3e45d879b1fe6, type: 3}
 --- !u!224 &1670268908 stripped
@@ -4552,12 +4560,12 @@ MonoBehaviour:
   LetterToDraw: 101
   PlayerBrush: {fileID: 287613167}
   drawGuids:
-  - GuideObject: {fileID: 976742279}
+  - GuideObject: {fileID: 1946049352}
     GuideParts:
     - {fileID: 8572133199642053094}
     - {fileID: 8981836097138875961}
     - {fileID: 1348974404669389232}
-  - GuideObject: {fileID: 1946049352}
+  - GuideObject: {fileID: 976742279}
     GuideParts:
     - {fileID: 8226459514580856671}
     - {fileID: 8558007765458846924}

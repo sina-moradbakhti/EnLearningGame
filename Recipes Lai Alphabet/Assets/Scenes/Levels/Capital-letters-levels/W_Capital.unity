@@ -1609,11 +1609,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5089647135485204068, guid: c30c89f8fdbc3b5469eabb15ba2d9086, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 18
+      value: 13.71
       objectReference: {fileID: 0}
     - target: {fileID: 5089647135485204068, guid: c30c89f8fdbc3b5469eabb15ba2d9086, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 153
+      value: 165
       objectReference: {fileID: 0}
     - target: {fileID: 5089647135485204068, guid: c30c89f8fdbc3b5469eabb15ba2d9086, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1650,6 +1650,10 @@ PrefabInstance:
     - target: {fileID: 5089647135485204071, guid: c30c89f8fdbc3b5469eabb15ba2d9086, type: 3}
       propertyPath: m_Name
       value: Star
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089647135485204071, guid: c30c89f8fdbc3b5469eabb15ba2d9086, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5089647135485204072, guid: c30c89f8fdbc3b5469eabb15ba2d9086, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1696,8 +1700,8 @@ PolygonCollider2D:
       - {x: -0.39, y: -0.01}
       - {x: -0.39, y: -0.11}
       - {x: -0.35999998, y: -0.13}
-      - {x: -0.29, y: -0.14}
-      - {x: 0.13, y: -0.26999998}
+      - {x: -0.33951703, y: -0.44864047}
+      - {x: 0.17951706, y: -0.5169122}
       - {x: 0.26, y: -0.32}
       - {x: 0.35, y: -0.32}
       - {x: 0.37, y: -0.31}
@@ -1995,8 +1999,8 @@ PolygonCollider2D:
       - {x: 0.28, y: 0.315}
       - {x: 0.26, y: 0.375}
       - {x: 0.13, y: 0.435}
-      - {x: -0.12, y: 0.515}
-      - {x: -0.28, y: 0.515}
+      - {x: -0.0092924535, y: 0.98909545}
+      - {x: -0.28, y: 1.2618628}
       - {x: -0.28, y: -0.345}
       - {x: -0.26999998, y: -0.515}
       - {x: -0.14, y: -0.515}
@@ -2040,9 +2044,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.16, y: 0.51}
-      - {x: 0.13, y: 0.48999998}
-      - {x: -0.17999999, y: 0.35}
+    - - {x: 0.16571729, y: 1.1827941}
+      - {x: -0.092971206, y: 1.1114794}
+      - {x: -0.32293016, y: 0.8745514}
       - {x: -0.28, y: 0.29999998}
       - {x: -0.28, y: 0.21}
       - {x: -0.22999999, y: 0.02}
@@ -2052,7 +2056,7 @@ PolygonCollider2D:
       - {x: 0.099999994, y: -0.51}
       - {x: 0.28, y: -0.51}
       - {x: 0.28, y: 0.29999998}
-      - {x: 0.26, y: 0.51}
+      - {x: 0.30002052, y: 1.0060431}
 --- !u!114 &623459060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2319,9 +2323,10 @@ PolygonCollider2D:
       - {x: 0, y: 0.39499998}
       - {x: -0.08, y: 0.42499998}
       - {x: -0.24, y: 0.42499998}
-      - {x: -0.24, y: -0.42499998}
-      - {x: -0.19, y: -0.42499998}
-      - {x: 0.02, y: -0.325}
+      - {x: -0.31055254, y: -0.81198215}
+      - {x: -0.1186972, y: -1.072092}
+      - {x: -0.0065635853, y: -1.1989646}
+      - {x: 0.21049173, y: -0.90195554}
       - {x: 0.19999999, y: -0.225}
       - {x: 0.24, y: -0.16499999}
       - {x: 0.24, y: 0.005}
@@ -2371,10 +2376,10 @@ PolygonCollider2D:
       - {x: -0.17999999, y: 0.16499999}
       - {x: -0.25, y: -0.095}
       - {x: -0.25, y: -0.155}
-      - {x: -0.19999999, y: -0.205}
-      - {x: 0.16, y: -0.42499998}
-      - {x: 0.22999999, y: -0.42499998}
-      - {x: 0.25, y: -0.375}
+      - {x: -0.18588936, y: -0.9860007}
+      - {x: 0.0753371, y: -0.94566715}
+      - {x: 0.24411035, y: -1.1215682}
+      - {x: 0.3628836, y: -0.79012644}
 --- !u!114 &623459072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2645,9 +2650,9 @@ PolygonCollider2D:
     - - {x: 0.255, y: 0.12}
       - {x: 0.255, y: 0.22}
       - {x: 0.155, y: 0.32}
-      - {x: -0.13499999, y: 0.48999998}
-      - {x: -0.175, y: 0.5}
-      - {x: -0.24499999, y: 0.5}
+      - {x: 0.06621738, y: 1.0251186}
+      - {x: -0.14625457, y: 1.1020085}
+      - {x: -0.24499999, y: 1.0828972}
       - {x: -0.255, y: 0.48999998}
       - {x: -0.255, y: -0.5}
       - {x: -0.125, y: -0.5}
@@ -2692,8 +2697,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0.25, y: 0.5}
-      - {x: 0.19, y: 0.5}
-      - {x: 0.14, y: 0.48}
+      - {x: 0.23790875, y: 1.1020086}
+      - {x: 0.07292763, y: 1.0342302}
       - {x: -0.14999999, y: 0.31}
       - {x: -0.28, y: 0.22}
       - {x: -0.28, y: 0.13}
@@ -4422,11 +4427,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5089647135485204068, guid: c30c89f8fdbc3b5469eabb15ba2d9086, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -9.5834
+      value: -2.0186
       objectReference: {fileID: 0}
     - target: {fileID: 5089647135485204068, guid: c30c89f8fdbc3b5469eabb15ba2d9086, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 135
+      value: 154
       objectReference: {fileID: 0}
     - target: {fileID: 5089647135485204068, guid: c30c89f8fdbc3b5469eabb15ba2d9086, type: 3}
       propertyPath: m_SizeDelta.x
