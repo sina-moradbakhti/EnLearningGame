@@ -23,6 +23,7 @@ public class ReadingSequence : MonoBehaviour
 
     bool showResult = false;
     bool clearResult = false;
+    int tryCount = 3;
     float result;
 
     private void Awake()
@@ -47,7 +48,10 @@ public class ReadingSequence : MonoBehaviour
             else
             {
                 if (result >= 1f) SpellingSuccess();
-                else SpellingFailed();
+                else {
+                    SpellingFailed();
+                    tryCount -= 1;
+                } 
                 showResult = false;
             }
         }
@@ -231,8 +235,16 @@ public class ReadingSequence : MonoBehaviour
         this.GetComponent<AudioSource>().volume = 1;
         this.GetComponent<AudioSource>().Play();
         manager.UIElements.MicrophonePanel.gameObject.SetActive(false);
-        string message = "실망하지 마세요\n다시 시작해 봐요!\n라이와 함께 GO~";
-        GuideControllerScript.StartGuid(message, 0.1f, ListenAgain(), true);
+
+        if(tryCount > 0)
+        {
+            string message = "실망하지 마세요\n다시 시작해 봐요!\n라이와 함께 GO~";
+            GuideControllerScript.StartGuid(message, 0.1f, ListenAgain(), true);
+        }
+        else
+        {
+            StartCoroutine(ListenAgain());
+        }
     }
 
     private IEnumerator ListenAgain()
@@ -241,8 +253,10 @@ public class ReadingSequence : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         this.GetComponent<AudioSource>().clip = null;
         MusicManager.musicManager.ChangeMusicVolume(0.32f, 0.85f);
-        ListeningSequence firstSeq = this.GetComponent<ListeningSequence>();
-        firstSeq.StartSequence();
+
+        if (tryCount > 0)
+            StartSequence();
+        else writing.StartSequence();
     }
 
     private void CheckForMicrophine()

@@ -6,20 +6,11 @@ using UnityEngine.SceneManagement;
 public class ScenesManager : MonoBehaviour
 {
 
-    public bool playDisappearAnimation;
-    public Animator LevelTransitionAnimator;
-    public float transitionLength;
-
-    private void Start()
-    {
-        if (playDisappearAnimation)
-        {
-            LevelTransitionAnimator.Play("Appear");
-        }
-    }
+    public GameObject loadingPanel;
 
     public void LoadLevelByName(string name)
     {
+        loadingPanel.SetActive(true);
         MusicManager.musicManager.ChangeMusicVolume(0f, 0.75f);
 
         if (name == "MainMenu")
@@ -56,14 +47,9 @@ public class ScenesManager : MonoBehaviour
         }
     }
 
-    public void ReloadScene()
-    {
-        string levelName = SceneManager.GetActiveScene().name;
-        StartCoroutine(PlayTransition(levelName));
-    }
-
     public void GoToSmallLetterLevel()
     {
+        loadingPanel.SetActive(true);
         string levelName = SceneManager.GetActiveScene().name;
         string[] splitName = levelName.Split("_".ToCharArray());
         string newName = splitName[0] + "_Small";
@@ -72,8 +58,7 @@ public class ScenesManager : MonoBehaviour
 
     IEnumerator PlayTransition(string levelName)
     {
-        LevelTransitionAnimator.Play("Disappear");
-        yield return new WaitForSeconds(transitionLength);
-        SceneManager.LoadScene(levelName);
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadSceneAsync(levelName);
     }
 }

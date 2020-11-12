@@ -4248,14 +4248,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1550737734}
     m_Modifications:
-    - target: {fileID: 936162964538522627, guid: 44d889e9b4765cf43ae3e45d879b1fe6, type: 3}
-      propertyPath: m_FillOrigin
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 936162966170863377, guid: 44d889e9b4765cf43ae3e45d879b1fe6, type: 3}
-      propertyPath: playDisappearAnimation
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 936162966170863381, guid: 44d889e9b4765cf43ae3e45d879b1fe6, type: 3}
       propertyPath: m_Name
       value: LevelTransitionPanel
