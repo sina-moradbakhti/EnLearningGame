@@ -38,7 +38,7 @@ public class PlayerBrush : MonoBehaviour
 
             float distance = Vector2.Distance(brushPos, mousePos);
 
-            if (distance <= 1.6f)
+            if (distance <= 1.5f)
             {
                 moveWithMouse = true;
             }
@@ -59,7 +59,7 @@ public class PlayerBrush : MonoBehaviour
 
             float distance = Vector2.Distance(brushPos, mousePos);
 
-            if (distance <= 1.6f)
+            if (distance <= 1.5f)
             {
                 moveWithMouse = true;
             }

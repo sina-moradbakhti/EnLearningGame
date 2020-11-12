@@ -236,7 +236,7 @@ public class ReadingSequence : MonoBehaviour
         this.GetComponent<AudioSource>().Play();
         manager.UIElements.MicrophonePanel.gameObject.SetActive(false);
 
-        if(tryCount > 0)
+        if(tryCount < 0)
         {
             string message = "실망하지 마세요\n다시 시작해 봐요!\n라이와 함께 GO~";
             GuideControllerScript.StartGuid(message, 0.1f, ListenAgain(), true);
@@ -254,7 +254,7 @@ public class ReadingSequence : MonoBehaviour
         this.GetComponent<AudioSource>().clip = null;
         MusicManager.musicManager.ChangeMusicVolume(0.32f, 0.85f);
 
-        if (tryCount > 0)
+        if (tryCount < 0)
             StartSequence();
         else writing.StartSequence();
     }

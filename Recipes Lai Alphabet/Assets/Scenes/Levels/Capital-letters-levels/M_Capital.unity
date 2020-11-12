@@ -6318,7 +6318,7 @@ MonoBehaviour:
     ClearPanel: {fileID: 355513301}
     WinPanel: {fileID: 504105005}
     MicrophonePanel: {fileID: 1352028143}
-    ConnectionCheckPanel: {fileID: 0}
+    ConnectionCheckPanel: {fileID: 1684392367}
     ResultImage: {fileID: 1005779203}
   gameSetting:
     CanSkip: 1

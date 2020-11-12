@@ -4747,7 +4747,7 @@ MonoBehaviour:
     - {fileID: 3760447551724909559}
     - {fileID: 2101215254443188877}
     - {fileID: 5522602398975821223}
-  - GuideObject: {fileID: 634988607}
+  - GuideObject: {fileID: 679257833}
     GuideParts:
     - {fileID: 841848803760639556}
     - {fileID: 2656781879113752989}

@@ -4129,7 +4129,7 @@ MonoBehaviour:
   LetterToDraw: 83
   PlayerBrush: {fileID: 1116367819}
   drawGuids:
-  - GuideObject: {fileID: 855861968}
+  - GuideObject: {fileID: 1437826655}
     GuideParts:
     - {fileID: 3751741341486495722}
     - {fileID: 7021827885004700264}

@@ -11,7 +11,9 @@ public class ScenesManager : MonoBehaviour
     public void LoadLevelByName(string name)
     {
         loadingPanel.SetActive(true);
-        MusicManager.musicManager.ChangeMusicVolume(0f, 0.75f);
+
+        if(MusicManager.musicManager != null)
+            MusicManager.musicManager.ChangeMusicVolume(0f, 0.75f);
 
         if (name == "MainMenu")
         {

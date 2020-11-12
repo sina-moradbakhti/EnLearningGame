@@ -7,6 +7,14 @@ public class PreviewScene : MonoBehaviour
 {
     void Start()
     {
-        SceneManager.LoadScene(1);
+        StartCoroutine(GoToMainMenu());
     }
+
+    IEnumerator GoToMainMenu()
+    {
+        yield return new WaitForSeconds(1.8f);
+        ScenesManager scenesManager = GameObject.FindObjectOfType<ScenesManager>();
+        scenesManager.LoadLevelByName("MainMenu");
+    }
+
 }

@@ -30,7 +30,7 @@ public class GuidePointsScript : MonoBehaviour
 
             float distance = Vector2.Distance(pointPos, mousePos);
 
-            if (distance <= 0.85f)
+            if (distance <= 1.25f)
             {
                 ClearPoint();
             }
@@ -47,7 +47,7 @@ public class GuidePointsScript : MonoBehaviour
 
             float distance = Vector2.Distance(pointPos, mousePos);
 
-            if (distance <= 0.85f)
+            if (distance <= 1.25f)
             {
                 ClearPoint();
             }
