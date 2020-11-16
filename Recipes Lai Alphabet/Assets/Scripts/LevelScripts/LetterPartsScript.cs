@@ -24,7 +24,7 @@ public class LetterPartsScript : MonoBehaviour
 
             float distance = Vector2.Distance(brushPos, mousePos);
 
-            if (distance <= 0.5)
+            if (distance <= 0.3)
             {
                 writing.ClearPart(this.gameObject);
             }
@@ -41,7 +41,7 @@ public class LetterPartsScript : MonoBehaviour
 
                 float distance = Vector2.Distance(brushPos, mousePos);
 
-                if (distance <= 0.5)
+                if (distance <= 0.3)
                 {
                 writing.ClearPart(this.gameObject);
                 }

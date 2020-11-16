@@ -9,6 +9,11 @@ public class LevelsManager : MonoBehaviour
     public Button[] alphabetsLevels;
     public AudioClip menuMusic;
 
+    private void Awake()
+    {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+    }
+
     void Start()
     {
         SetMenuMusic();

@@ -218,7 +218,7 @@ public class ReadingSequence : MonoBehaviour
     IEnumerator MoveToWritingSequence()
     {
         clearResult = true;
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.25f);
         manager.UIElements.WinPanel.gameObject.SetActive(false);
         manager.UIElements.ClearPanel.gameObject.SetActive(false);
         writing.StartSequence();

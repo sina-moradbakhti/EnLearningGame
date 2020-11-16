@@ -254,7 +254,7 @@ public class WritingSequence : MonoBehaviour
             {
                 PlayerPrefs.SetString("SmallLevelToActive", levelLetter + "_small");
             }
-            Invoke("MoveToSmallLetter", 2f);
+            Invoke("MoveToSmallLetter", 1f);
         }
         else if (levelLetter == levelLetter.ToLower())
         {
@@ -269,7 +269,7 @@ public class WritingSequence : MonoBehaviour
                 PlayerPrefs.SetInt("CurrentLevelIndex",newLevelIndex);
             }
 
-            Invoke("MoveToMainMenu", 2f);
+            Invoke("MoveToMainMenu", 1f);
         }
     }
     

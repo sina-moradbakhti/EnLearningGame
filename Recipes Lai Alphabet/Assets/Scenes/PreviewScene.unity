@@ -159,8 +159,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.030761719, y: 0}
-  m_SizeDelta: {x: 0.061035156, y: -192.13098}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &365157318
 MonoBehaviour:
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1d8ab113c8286b94796610d53190dcc6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cd2f9fcbf937ba4a9469a27c0b23988, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -459,11 +459,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1632760103830381134, guid: 44d889e9b4765cf43ae3e45d879b1fe6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -51.00403
+      value: -51
       objectReference: {fileID: 0}
     - target: {fileID: 1632760103830381134, guid: 44d889e9b4765cf43ae3e45d879b1fe6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -18.001465
+      value: -18
       objectReference: {fileID: 0}
     - target: {fileID: 6510002027425028657, guid: 44d889e9b4765cf43ae3e45d879b1fe6, type: 3}
       propertyPath: m_IsActive
@@ -528,8 +528,8 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_ScreenMatchMode: 2
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -546,7 +546,7 @@ Canvas:
   m_RenderMode: 1
   m_Camera: {fileID: 565992175}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
