@@ -302,7 +302,7 @@ Camera:
   m_GameObject: {fileID: 565992173}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -324,7 +324,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 33
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -362,6 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33fe90dc2e582d34f877c2208b000c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingPanel: {fileID: 1730643017}
 --- !u!1001 &724988774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -651,6 +652,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058863210}
   m_CullTransparentMesh: 0
+--- !u!1 &1730643017 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6510002027425028657, guid: 44d889e9b4765cf43ae3e45d879b1fe6, type: 3}
+  m_PrefabInstance: {fileID: 724988774}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2030192911
 GameObject:
   m_ObjectHideFlags: 0

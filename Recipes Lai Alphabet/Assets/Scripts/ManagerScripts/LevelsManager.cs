@@ -28,7 +28,7 @@ public class LevelsManager : MonoBehaviour
             currentLevelIndex = PlayerPrefs.GetInt("CurrentLevelIndex");
         }
 
-        UnlockLevels(26);
+        UnlockLevels(currentLevelIndex);
     }
 
     private void UnlockLevels(int currentLevelIndex)

@@ -5,16 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class PreviewScene : MonoBehaviour
 {
+    public GameObject loadingPanel;
+    AsyncOperation loadingOperation;
+
     void Start()
     {
-        StartCoroutine(GoToMainMenu());
+        loadingOperation = SceneManager.LoadSceneAsync("MainMenu");
+        loadingOperation.allowSceneActivation = false;
     }
 
-    IEnumerator GoToMainMenu()
+    private void Update()
     {
-        yield return new WaitForSeconds(1.8f);
-        ScenesManager scenesManager = GameObject.FindObjectOfType<ScenesManager>();
-        scenesManager.LoadLevelByName("MainMenu");
+        Invoke("ActivateLoadingPanel", 2f);
+    }
+
+    private void ActivateLoadingPanel()
+    {
+        if (!loadingPanel.activeInHierarchy)
+            loadingPanel.SetActive(true);
+
+        Invoke("LoadMainMenuLevel", 0.5f);
+    }
+
+    private void LoadMainMenuLevel()
+    {
+        loadingOperation.allowSceneActivation = true;
     }
 
 }
