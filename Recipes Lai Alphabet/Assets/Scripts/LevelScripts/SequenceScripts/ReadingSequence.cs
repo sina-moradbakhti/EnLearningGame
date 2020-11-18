@@ -95,7 +95,7 @@ public class ReadingSequence : MonoBehaviour
     IEnumerator ReadyToCountDown()
     {
         yield return new WaitForSeconds(1f);
-        string message = "3,2,1 하면\n마법의 주문의\n외쳐봐요!​";
+        string message = "3,2,1 하면\n마법의 주문를\n외쳐봐요!";
         GuideControllerScript.StartGuid(message, 0.1f, CountDown(), true);
     }
 

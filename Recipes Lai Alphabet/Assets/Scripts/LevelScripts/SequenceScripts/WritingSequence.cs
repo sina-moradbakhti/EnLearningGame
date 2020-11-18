@@ -66,9 +66,7 @@ public class WritingSequence : MonoBehaviour
 
     public void PlayerDrawTime()
     {
-        string message = "3,2,1하면\n마법의 붓으로\n그려봐요";
-
-
+        string message = "3,2,1 하면\n마법의 붓으로\n그려봐요";
         GuideController.StartGuid(message, 0.1f, CountDown(), true);
     }
 

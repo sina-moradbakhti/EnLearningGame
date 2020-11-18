@@ -20,7 +20,7 @@ public class ListeningSequence : MonoBehaviour
 
     public int countDownStartNumber { get; set; }
 
-    private string sequenceGuideStrings = "1,2,3 하면\n마법의 주문이\n들려요!";
+    private string sequenceGuideStrings = "3,2,1 하면\n마법의 주문이\n들려요!";
     private bool takeSpeaker = false;
     private int repeatCount = 2;
 
